@@ -132,13 +132,14 @@ a:focus-visible {
 }
 
 .doors a {
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.22em;
-  text-decoration-color: var(--rule);
+  display: block;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--rule);
+  text-decoration: none;
 }
 
 .doors a:hover {
-  text-decoration-color: currentColor;
+  border-color: var(--ink);
 }
 
 .colophon {
