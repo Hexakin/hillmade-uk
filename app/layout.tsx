@@ -56,7 +56,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </header>
           {children}
           <footer className="colophon">
-            <p>© Hillmade · Jonathan Hill</p>
+            <p>
+              © Hillmade · Jonathan Hill ·{" "}
+              <a href="https://hexakin.com">Hexakin</a>
+            </p>
           </footer>
         </div>
       </body>
