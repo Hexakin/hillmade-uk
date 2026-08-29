@@ -36,6 +36,11 @@ export default function Home() {
             <a href="https://hexakin.com">Hexakin</a>
           </li>
           <li>
+            <a href="https://www.notourjurisdiction.co.uk/">
+              Not Our Jurisdiction
+            </a>
+          </li>
+          <li>
             <a href="mailto:jonathan.hill@hillmade.uk">
               jonathan.hill@hillmade.uk
             </a>
