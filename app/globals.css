@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+:root {
+  --paper: #f3efe6;
+  --ink: #1c1916;
+  --ink-muted: #5a554c;
+  --rule: #cfc8bb;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-rule: var(--rule);
+  --font-sans: var(--font-source-sans);
+  --font-serif: var(--font-newsreader);
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+body {
+  min-height: 100dvh;
+  font-family: var(--font-source-sans), "Source Sans 3", ui-sans-serif, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+a:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.frame {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem 1.5rem;
+}
+
+@media (min-width: 880px) {
+  .frame {
+    padding: 2.25rem 3rem 2rem;
+  }
+}
+
+.mast {
+  display: flex;
+  align-items: baseline;
+}
+
+.wordmark {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.profile {
+  flex: 1;
+  display: grid;
+  align-items: center;
+  gap: 2.75rem;
+  padding: 3.25rem 0 3rem;
+}
+
+@media (min-width: 880px) {
+  .profile {
+    grid-template-columns: minmax(14rem, 20.5rem) minmax(0, 28rem);
+    column-gap: 5.75rem;
+    padding: 7.5rem 0 5.5rem;
+  }
+}
+
+.portrait {
+  margin: 0;
+}
+
+.portrait img {
+  width: 100%;
+  max-width: 16.5rem;
+  height: auto;
+  display: block;
+}
+
+@media (min-width: 880px) {
+  .portrait img {
+    max-width: none;
+  }
+}
+
+.name {
+  font-family: var(--font-serif), Newsreader, ui-serif, serif;
+  font-size: clamp(2.35rem, 4.2vw, 3.35rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+.line {
+  margin-top: 0.95rem;
+  max-width: 22rem;
+  font-size: 1.125rem;
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+
+.bio {
+  margin-top: 2.35rem;
+  display: grid;
+  gap: 1.1rem;
+  max-width: 32rem;
+}
+
+.doors {
+  margin: 2.4rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.doors a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: var(--rule);
+}
+
+.doors a:hover {
+  text-decoration-color: currentColor;
+}
+
+.colophon {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+}
+
+.missing {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 7rem 0;
+}
+
+.missing a {
+  width: fit-content;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: var(--rule);
+}
+
+.missing a:hover {
+  text-decoration-color: currentColor;
+}
