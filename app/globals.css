@@ -69,34 +69,36 @@ a:focus-visible {
 .profile {
   flex: 1;
   display: grid;
-  align-items: center;
+  align-items: start;
   gap: 2.75rem;
-  padding: 3.25rem 0 3rem;
+  padding: 1.35rem 0 3rem;
 }
 
 @media (min-width: 880px) {
   .profile {
     grid-template-columns: minmax(14rem, 20.5rem) minmax(0, 28rem);
     column-gap: 5.75rem;
-    padding: 7.5rem 0 5.5rem;
+    padding: 1.5rem 0 4rem;
   }
 }
 
 .portrait {
+  position: relative;
   margin: 0;
-}
-
-.portrait img {
   width: 100%;
   max-width: 16.5rem;
-  height: auto;
-  display: block;
+  aspect-ratio: 4 / 5;
 }
 
 @media (min-width: 880px) {
-  .portrait img {
+  .portrait {
     max-width: none;
   }
+}
+
+.portrait img {
+  object-fit: cover;
+  object-position: 35% 50%;
 }
 
 .name {

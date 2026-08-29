@@ -7,8 +7,7 @@ export default function Home() {
         <Image
           src="/jonathan-hill.jpg"
           alt="Jonathan Hill"
-          width={800}
-          height={1000}
+          fill
           priority
           sizes="(min-width: 880px) 20.5rem, 16.5rem"
         />
