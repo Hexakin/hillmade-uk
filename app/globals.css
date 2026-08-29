@@ -71,34 +71,33 @@ a:focus-visible {
   display: grid;
   align-items: start;
   gap: 2.75rem;
-  padding: 1.35rem 0 3rem;
+  padding: 0.85rem 0 3rem;
 }
 
 @media (min-width: 880px) {
   .profile {
     grid-template-columns: minmax(14rem, 20.5rem) minmax(0, 28rem);
     column-gap: 5.75rem;
-    padding: 1.5rem 0 4rem;
+    padding: 1rem 0 4rem;
   }
 }
 
 .portrait {
-  position: relative;
   margin: 0;
-  width: 100%;
-  max-width: 16.5rem;
-  aspect-ratio: 4 / 5;
-}
-
-@media (min-width: 880px) {
-  .portrait {
-    max-width: none;
-  }
 }
 
 .portrait img {
-  object-fit: cover;
-  object-position: 35% 50%;
+  width: 100%;
+  max-width: 16.5rem;
+  height: auto;
+  display: block;
+  object-position: 20% 50%;
+}
+
+@media (min-width: 880px) {
+  .portrait img {
+    max-width: none;
+  }
 }
 
 .name {

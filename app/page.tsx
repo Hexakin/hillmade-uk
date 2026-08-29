@@ -7,9 +7,11 @@ export default function Home() {
         <Image
           src="/jonathan-hill.jpg"
           alt="Jonathan Hill"
-          fill
+          width={800}
+          height={1000}
           priority
           sizes="(min-width: 880px) 20.5rem, 16.5rem"
+          style={{ objectPosition: "20% 50%" }}
         />
       </figure>
       <div>
