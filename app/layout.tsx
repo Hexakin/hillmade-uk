@@ -59,6 +59,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <p>
               © Hillmade · Jonathan Hill ·{" "}
               <a href="https://hexakin.com">Hexakin</a>
+              {" · "}
+              <a href="https://grokbot.studio">grokbot.studio</a>
             </p>
           </footer>
         </div>
