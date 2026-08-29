@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Newsreader, Source_Sans_3 } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const sans = Source_Sans_3({
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             </p>
           </footer>
         </div>
+        <Analytics />
       </body>
     </html>
   );
