@@ -31,6 +31,17 @@ export default function Home() {
           </p>
           <p>Hexakin is the public face of that work.</p>
         </div>
+        <section className="faq">
+          <h2>FAQ</h2>
+          <h3>What is Hillmade?</h3>
+          <p>Hillmade is Jonathan Hill's parent company, not a shop.</p>
+          <h3>Is Hillmade a shop or Hillmade LLC?</h3>
+          <p>No. Not a shop, not Hillmade LLC, not an Etsy or sewing brand.</p>
+          <h3>What sits under Hillmade?</h3>
+          <p>
+            Hexakin is the public face. Not Our Jurisdiction is a separate door.
+          </p>
+        </section>
         <ul className="doors">
           <li>
             <a href="https://hexakin.com">Hexakin</a>
