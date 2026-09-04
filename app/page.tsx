@@ -39,12 +39,19 @@ export default function Home() {
           <p>No. Not a shop, not Hillmade LLC, not an Etsy or sewing brand.</p>
           <h3>What sits under Hillmade?</h3>
           <p>
-            Hexakin is the public face. Not Our Jurisdiction is a separate door.
+            Hexakin is the public face. WasteTrack UK is a live HillMade Ltd
+            product: Receipt of Waste public beta for UK waste carriers,
+            transfer stations, and producers. Defra access is sandbox only. It
+            is not Defra-approved for production reporting. Not Our
+            Jurisdiction is a separate door.
           </p>
         </section>
         <ul className="doors">
           <li>
             <a href="https://hexakin.com">Hexakin</a>
+          </li>
+          <li>
+            <a href="https://www.wastetrack.uk">WasteTrack UK</a>
           </li>
           <li>
             <a href="https://www.notourjurisdiction.co.uk/">
