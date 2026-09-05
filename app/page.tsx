@@ -43,7 +43,8 @@ export default function Home() {
             product: Receipt of Waste public beta for UK waste carriers,
             transfer stations, and producers. Defra access is sandbox only. It
             is not Defra-approved for production reporting. Not Our
-            Jurisdiction is a separate door.
+            Jurisdiction is a separate door. Grok Bot templates is a
+            separate door. It is unofficial and not from xAI.
           </p>
         </section>
         <ul className="doors">
@@ -59,11 +60,27 @@ export default function Home() {
             </a>
           </li>
           <li>
+            <a href="https://grokbot.studio">Grok Bot templates</a>
+          </li>
+          <li>
             <a href="mailto:jonathan.hill@hillmade.uk">
               jonathan.hill@hillmade.uk
             </a>
           </li>
         </ul>
+        <section className="faq">
+          <h2>Tools / demos</h2>
+          <ul className="doors">
+            <li>
+              <a href="https://hillmade-ao3.grok.me/">AO3 Formatter</a>
+            </li>
+            <li>
+              <a href="https://hillmade-goodreads.grok.me/">
+                Goodreads Export Fixer
+              </a>
+            </li>
+          </ul>
+        </section>
       </div>
     </main>
   );

@@ -154,6 +154,10 @@ a:focus-visible {
   gap: 0.55rem;
 }
 
+.faq .doors {
+  margin-top: 1rem;
+}
+
 .doors a {
   display: block;
   padding: 0.7rem 0.9rem;
