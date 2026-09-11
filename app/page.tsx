@@ -79,9 +79,6 @@ export default function Home() {
                 Goodreads Export Fixer
               </a>
             </li>
-            <li>
-              <a href="https://arcade.hexakin.com">DropForge</a>
-            </li>
           </ul>
         </section>
       </div>
