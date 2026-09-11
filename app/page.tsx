@@ -72,12 +72,15 @@ export default function Home() {
           <h2>Tools / demos</h2>
           <ul className="doors">
             <li>
-              <a href="https://hillmade-ao3.grok.me/">AO3 Formatter</a>
+              <a href="https://ao3.hexakin.com">AO3 Formatter</a>
             </li>
             <li>
-              <a href="https://hillmade-goodreads.grok.me/">
+              <a href="https://goodreads.hexakin.com">
                 Goodreads Export Fixer
               </a>
+            </li>
+            <li>
+              <a href="https://arcade.hexakin.com">DropForge</a>
             </li>
           </ul>
         </section>
