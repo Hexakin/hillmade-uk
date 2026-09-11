@@ -79,6 +79,9 @@ export default function Home() {
                 Goodreads Export Fixer
               </a>
             </li>
+            <li>
+              <a href="https://nails.hillmade.uk">Mrs Hilly nails</a>
+            </li>
           </ul>
         </section>
       </div>
