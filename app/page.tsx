@@ -17,7 +17,8 @@ export default function Home() {
       <div>
         <h1 className="name">Jonathan Hill</h1>
         <p className="line">
-          Hillmade is the parent company of everything I make.
+          Hillmade is Jonathan Hill&apos;s professional parent. Public work
+          lives at Hexakin.
         </p>
         <div className="bio">
           <p>
@@ -34,17 +35,20 @@ export default function Home() {
         <section className="faq">
           <h2>FAQ</h2>
           <h3>What is Hillmade?</h3>
-          <p>Hillmade is Jonathan Hill's parent company, not a shop.</p>
+          <p>
+            Hillmade is Jonathan Hill&apos;s professional parent for
+            client-safe work. Hexakin is the public face.
+          </p>
           <h3>Is Hillmade a shop or Hillmade LLC?</h3>
           <p>No. Not a shop, not Hillmade LLC, not an Etsy or sewing brand.</p>
           <h3>What sits under Hillmade?</h3>
           <p>
-            Hexakin is the public face. WasteTrack UK is a live HillMade Ltd
-            product: Receipt of Waste public beta for UK waste carriers,
-            transfer stations, and producers. Defra access is sandbox only. It
-            is not Defra-approved for production reporting. Not Our
-            Jurisdiction is a separate door. Grok Bot templates is a
-            separate door. It is unofficial and not from xAI.
+            Hexakin is the public face. WasteTrack UK is a live product:
+            Receipt of Waste public beta for UK waste carriers, transfer
+            stations, and producers. Defra access is sandbox only. It is not
+            Defra-approved for production reporting. Not Our Jurisdiction is a
+            separate door. Grok Bot templates is a separate door. It is
+            unofficial and not from xAI.
           </p>
         </section>
         <ul className="doors">
