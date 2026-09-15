@@ -1,0 +1,5 @@
+[
+  { "label": "Understand the experiment", "note": "A novel, and a record of how it gets written.", "kind": "page", "target": "/start" },
+  { "label": "Read from the beginning", "note": "The writing archive, in chronological order.", "kind": "page", "target": "/archive?order=oldest" },
+  { "label": "Find the draft chapters", "note": "The publicly available manuscript, in reading order.", "kind": "page", "target": "/chapters" }
+]

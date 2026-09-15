@@ -1,91 +1,168 @@
-import Image from "next/image";
+import Link from "next/link";
+import {
+  ArchiveTimeline,
+  BookStatus,
+  EmptyArchive,
+  Newsletter,
+  StartHereList,
+} from "@/components/Editorial";
+import { getContent } from "@/lib/content";
+import { pageMetadata, lifecycleCopy } from "@/lib/site";
 
+export function generateMetadata() {
+  const copy = lifecycleCopy[getContent().book.phase];
+  return pageMetadata(
+    `${copy.lines.join(" ")} ${copy.subtitle}`,
+    copy.description,
+    "/",
+  );
+}
 export default function Home() {
+  const { book, archive, chapters, start } = getContent();
+  const latestChapter = chapters
+    .filter((chapter) => chapter.bodyAvailable)
+    .sort(
+      (a, b) =>
+        (b.updatedAt || b.firstPublishedAt || "").localeCompare(
+          a.updatedAt || a.firstPublishedAt || "",
+        ) || b.number - a.number,
+    )[0];
+  const copy = lifecycleCopy[book.phase];
   return (
-    <main className="profile">
-      <figure className="portrait">
-        <Image
-          src="/jonathan-hill.jpg"
-          alt="Jonathan Hill"
-          width={800}
-          height={1000}
-          priority
-          sizes="(min-width: 880px) 20.5rem, 16.5rem"
-          style={{ objectPosition: "20% 50%" }}
-        />
-      </figure>
-      <div>
-        <h1 className="name">Jonathan Hill</h1>
-        <p className="line">
-          Hillmade is Jonathan Hill&apos;s professional parent. Public work
-          lives at Hexakin.
-        </p>
-        <div className="bio">
-          <p>
-            After a career in regulated work — compliance, insurance,
-            healthcare, finance — I started Hillmade to explore new
-            possibilities and to learn how business and modern technology
-            actually work.
+    <main id="main" tabIndex={-1}>
+      <section className="hero shell" aria-labelledby="hero-title">
+        <div className="hero-main">
+          <p className="meta hero-kicker">
+            <span className="red-line" />
+            {copy.kicker}
           </p>
-          <p>
-            I still work in that world. Hillmade is where I build in the open.
+          <h1 id="hero-title">
+            {copy.lines[0]}
+            <br />
+            {copy.lines[1].slice(0, -1)}
+            <span className="red-period">.</span>
+          </h1>
+          <p className="hero-subtitle">
+            {book.phase === "writing" ? (
+              <>
+                You can watch me <em>do it.</em>
+              </>
+            ) : (
+              copy.subtitle
+            )}
           </p>
-          <p>Hexakin is the public face of that work.</p>
+          <p className="hero-copy">
+            {book.phase === "writing" ? (
+              <>
+                Excerpts, discoveries, characters, wrong turns.
+                <br className="desktop-break" /> I&apos;m sharing the work as
+                the story takes shape.
+                <br className="desktop-break" /> This is the record of the book
+                becoming itself.
+              </>
+            ) : (
+              copy.description
+            )}
+          </p>
+          <div className="hero-actions">
+            <Link href="/start" className="button-paper">
+              Start at the beginning <span aria-hidden="true">↗</span>
+            </Link>
+            <Link
+              href={archive[0] ? `/archive/${archive[0].slug}` : "/archive"}
+              className="text-link"
+            >
+              {archive[0] ? "Read the latest update" : "Explore the notebook"}
+              <span aria-hidden="true">↗</span>
+            </Link>
+          </div>
+          <p className="hero-byline">
+            By Jonathan Hill <span aria-hidden="true">·</span>{" "}
+            <a href="https://x.com/hexakin">
+              @hexakin on X <span aria-hidden="true">↗</span>
+            </a>
+          </p>
         </div>
-        <section className="faq">
-          <h2>FAQ</h2>
-          <h3>What is Hillmade?</h3>
-          <p>
-            Hillmade is Jonathan Hill&apos;s professional parent for
-            client-safe work. Hexakin is the public face.
-          </p>
-          <h3>Is Hillmade a shop or Hillmade LLC?</h3>
-          <p>No. Not a shop, not Hillmade LLC, not an Etsy or sewing brand.</p>
-          <h3>What sits under Hillmade?</h3>
-          <p>
-            Hexakin is the public face. WasteTrack UK is a live product:
-            Receipt of Waste public beta for UK waste carriers, transfer
-            stations, and producers. Defra access is sandbox only. It is not
-            Defra-approved for production reporting. Not Our Jurisdiction is a
-            separate door. Grok Bot templates is a separate door. It is
-            unofficial and not from xAI.
-          </p>
-        </section>
-        <ul className="doors">
-          <li>
-            <a href="https://hexakin.com">Hexakin</a>
-          </li>
-          <li>
-            <a href="https://www.wastetrack.uk">WasteTrack UK</a>
-          </li>
-          <li>
-            <a href="https://www.notourjurisdiction.co.uk/">
-              Not Our Jurisdiction
-            </a>
-          </li>
-          <li>
-            <a href="https://grokbot.studio">Grok Bot templates</a>
-          </li>
-          <li>
-            <a href="mailto:jonathan.hill@hillmade.uk">
-              jonathan.hill@hillmade.uk
-            </a>
-          </li>
-        </ul>
-        <section className="faq">
-          <h2>Tools / demos</h2>
-          <ul className="doors">
-            <li>
-              <a href="https://ao3.hexakin.com">AO3 Formatter</a>
-            </li>
-            <li>
-              <a href="https://goodreads.hexakin.com">
-                Goodreads Export Fixer
-              </a>
-            </li>
-          </ul>
-        </section>
+        <BookStatus book={book} />
+      </section>
+      <div className="revision-rule shell">
+        <p>
+          <span className="revision-strike">The finished story.</span>{" "}
+          <span className="revision-hand">The story becoming itself.</span>
+        </p>
+        <span className="meta">Drafts change. The record stays.</span>
       </div>
+      <section className="writing-desk shell" aria-labelledby="desk-title">
+        <div className="desk-main">
+          <div className="section-heading">
+            <div>
+              <p className="meta section-label">The public notebook</p>
+              <h2 id="desk-title">From the writing desk</h2>
+            </div>
+            <Link href="/archive" className="text-link">
+              View archive <span aria-hidden="true">↗</span>
+            </Link>
+          </div>
+          {archive.length ? (
+            <ArchiveTimeline entries={archive.slice(0, 3)} heading="h3" />
+          ) : (
+            <EmptyArchive heading="h3" />
+          )}
+        </div>
+        <aside className="chapter-preview">
+          <p className="meta section-label">
+            {latestChapter ? "The latest draft chapter" : "The manuscript"}
+          </p>
+          <span className="sheet-number" aria-hidden="true">
+            {latestChapter
+              ? String(latestChapter.number).padStart(2, "0")
+              : "§"}
+          </span>
+          <h2>{latestChapter ? latestChapter.title : "Chapter by chapter."}</h2>
+          <p>
+            {latestChapter
+              ? latestChapter.description
+              : "Full draft chapters will live here as they're ready to share. Still rough. Still changing."}
+          </p>
+          <Link
+            href={
+              latestChapter ? `/chapters/${latestChapter.slug}` : "/chapters"
+            }
+            className="text-link"
+          >
+            {latestChapter ? "Read the chapter" : "The chapter index"}
+            <span aria-hidden="true">↗</span>
+          </Link>
+          <span className="sheet-foot meta">
+            A work in progress /{" "}
+            {latestChapter ? "Public draft" : "Not yet published"}
+          </span>
+        </aside>
+      </section>
+      <section className="start-section shell" aria-labelledby="start-title">
+        <div>
+          <p className="meta section-label">A place to begin</p>
+          <h2 id="start-title">
+            Arrived halfway
+            <br />
+            through a thought?
+          </h2>
+          <p>
+            You don&apos;t have to catch up with a whole timeline.
+            <br />
+            Here&apos;s a way into the story.
+          </p>
+        </div>
+        <StartHereList items={start} />
+      </section>
+      {book.releaseUrl && (
+        <p className="shell release-link">
+          <a className="button-paper" href={book.releaseUrl}>
+            Find the finished book <span aria-hidden="true">↗</span>
+          </a>
+        </p>
+      )}
+      <Newsletter />
     </main>
   );
 }
