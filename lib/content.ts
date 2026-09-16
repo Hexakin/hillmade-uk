@@ -155,8 +155,16 @@ function json(root: string, filename: string) {
 }
 function files(root: string, directory: string) {
   const folder = path.join(root, directory);
-  return fs
-    .readdirSync(folder)
+  let names: string[];
+  try {
+    names = fs.readdirSync(folder);
+  } catch (error) {
+    // Vercel NFT omits empty folders (archive/chapters currently hold only .gitkeep).
+    if (error instanceof Error && "code" in error && error.code === "ENOENT")
+      return [];
+    throw error;
+  }
+  return names
     .filter((name) => name.endsWith(".md"))
     .sort()
     .map((name) => {

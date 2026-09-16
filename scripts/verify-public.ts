@@ -80,6 +80,7 @@ async function main() {
     );
   }
   const image = await fetch(new URL("/share/home", origin));
+  assert.equal((await fetch(new URL("/share/test", origin))).status, 404);
   assert.equal((await fetch(new URL("/share/not-a-share-page", origin))).status, 404);
   assert.equal((await fetch(new URL("/share/__proto__", origin))).status, 404);
   assert.equal((await fetch(new URL("/archive?type=constructor", origin))).status, 200);

@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { ImageResponse } from "next/og";
-import { formatDate, getContent } from "./content";
+import { contentRoot, formatDate, getContent } from "./content";
 import { lifecycleCopy } from "./site";
 const staticPages: Record<string, { title: string; detail: string }> = {
   home: { title: "I'm writing a novel.", detail: "You can watch me do it." },
@@ -26,16 +26,16 @@ const staticPages: Record<string, { title: string; detail: string }> = {
     detail: "A small site. A small amount of data.",
   },
 };
-export function shareKeys() {
-  const { archive, chapters } = getContent();
+export function shareKeys(root = contentRoot()) {
+  const { archive, chapters } = getContent(root);
   return [
     ...Object.keys(staticPages),
     ...archive.map((item) => `archive--${item.slug}`),
     ...chapters.map((item) => `chapters--${item.slug}`),
   ];
 }
-export function shareImage(key: string) {
-  const { archive, chapters, book } = getContent();
+export function shareImage(key: string, root = contentRoot()) {
+  const { archive, chapters, book } = getContent(root);
   let item = Object.hasOwn(staticPages, key) ? staticPages[key] : undefined;
   if (key === "home")
     item = {
