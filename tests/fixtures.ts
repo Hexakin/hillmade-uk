@@ -151,6 +151,7 @@ export function createFixtures(root: string) {
       number: 1,
       title: "LOCAL TEST FIXTURE — a chapter reader",
       status: "revised",
+      version: 2,
       updatedAt: "2000-01-02",
       revisionNote: "Local fixture for revision metadata.",
       excerpt: "TEST_CHAPTER_EXCERPT_8ed2",

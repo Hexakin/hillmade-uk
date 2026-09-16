@@ -2,6 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { z } from "zod";
+import { localPreview } from "./preview";
+export { localPreview } from "./preview";
 
 const slug = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
 const date = z
@@ -47,12 +49,13 @@ export const archiveSchema = z
   .object({
     id: slug,
     slug,
-    date,
+    date: date.optional(),
     day: z.number().int().positive().optional(),
     type: z.enum(archiveTypes),
     title: text.max(180),
     summary: text.max(500),
     published: z.boolean().default(false),
+    preview: z.boolean().default(false),
     xUrl: xUrl.optional(),
     xArticleUrl: xUrl.optional(),
     chapter: slug.optional(),
@@ -61,15 +64,23 @@ export const archiveSchema = z
     manuscriptExcerpt: text.optional(),
     manuscriptBody: z.boolean().default(false),
   })
-  .strict();
+  .strict()
+  .superRefine((value, ctx) => {
+    if (!value.date && !value.preview)
+      ctx.addIssue({ code: "custom", path: ["date"], message: "Archive releases need a real date" });
+    if (value.preview && (value.published || value.date))
+      ctx.addIssue({ code: "custom", path: ["preview"], message: "Local preview must be unpublished and undated" });
+  });
 
 export const chapterSchema = z
   .object({
     id: slug,
     slug,
     number: z.number().int().positive(),
+    version: z.number().int().positive().default(1),
     title: text.max(180),
     published: z.boolean().default(false),
+    preview: z.boolean().default(false),
     status: z.enum(["upcoming", "public", "revised", "withdrawn"]),
     firstPublishedAt: date.optional(),
     updatedAt: date.optional(),
@@ -80,12 +91,18 @@ export const chapterSchema = z
   })
   .strict()
   .superRefine((value, ctx) => {
-    if (value.status !== "upcoming" && !value.firstPublishedAt)
+    if (value.preview && (value.published || value.firstPublishedAt || value.updatedAt || value.status !== "public" || value.version !== 1))
+      ctx.addIssue({ code: "custom", path: ["preview"], message: "Local preview must be an undated, unpublished first edition" });
+    if (!value.preview && value.status !== "upcoming" && !value.firstPublishedAt)
       ctx.addIssue({
         code: "custom",
         path: ["firstPublishedAt"],
         message: "Released chapter history needs its first public date",
       });
+    if (value.status === "public" && value.version !== 1)
+      ctx.addIssue({ code: "custom", path: ["version"], message: "Later editions use revised status" });
+    if (value.status === "revised" && (value.version < 2 || !value.revisionNote))
+      ctx.addIssue({ code: "custom", path: ["version"], message: "Revised chapters need version 2 or later and a public revision note" });
     if (value.status === "revised" && !value.updatedAt)
       ctx.addIssue({
         code: "custom",
@@ -159,7 +176,7 @@ function files(root: string, directory: string) {
   try {
     names = fs.readdirSync(folder);
   } catch (error) {
-    // Vercel NFT omits empty folders (archive/chapters currently hold only .gitkeep).
+    // Vercel NFT may omit empty content folders.
     if (error instanceof Error && "code" in error && error.code === "ENOENT")
       return [];
     throw error;
@@ -195,6 +212,8 @@ export function readSources(root = contentRoot()) {
     ...chapterSchema.parse(data),
     ...rest,
   }));
+  if ([...archive, ...chapters].some(item => item.preview) && !localPreview())
+    throw new Error("Unapproved local preview content: use LOCAL_CONTENT_PREVIEW=1 only on loopback; publication approval and real release dates are required before deployment");
   unique(archive, "archive");
   unique(chapters, "chapter");
   if (new Set(chapters.map((item) => item.number)).size !== chapters.length)
@@ -210,7 +229,7 @@ export function readSources(root = contentRoot()) {
   }
   for (const chapter of chapters) {
     if (
-      chapter.published &&
+      (chapter.published || chapter.preview) &&
       ["public", "revised"].includes(chapter.status) &&
       !chapter.body
     )
@@ -238,7 +257,7 @@ export function readSources(root = contentRoot()) {
       item.kind === "page"
         ? allowedPages.includes(item.target)
         : (item.kind === "archive" ? archive : chapters).some(
-            (entry) => entry.id === item.target && entry.published,
+            (entry) => entry.id === item.target && (entry.published || (localPreview() && entry.preview)),
           );
     if (!exists)
       throw new Error(
@@ -252,7 +271,7 @@ export function readSources(root = contentRoot()) {
 export function getContent(root = contentRoot()) {
   const source = readSources(root);
   const chapters: Chapter[] = source.chapters
-    .filter((item) => item.published)
+    .filter((item) => item.published || (localPreview() && item.preview))
     .map((item) => {
       const bodyAvailable =
         source.book.fullTextEnabled &&
@@ -266,7 +285,7 @@ export function getContent(root = contentRoot()) {
     })
     .sort((a, b) => a.number - b.number || a.id.localeCompare(b.id, "en"));
   const archive: ArchiveEntry[] = source.archive
-    .filter((item) => item.published)
+    .filter((item) => item.published || (localPreview() && item.preview))
     .map((item) => ({
       ...item,
       chapter: chapters.some((chapter) => chapter.id === item.chapter)
@@ -280,7 +299,7 @@ export function getContent(root = contentRoot()) {
     }))
     .sort(
       (a, b) =>
-        b.date.localeCompare(a.date, "en") || b.id.localeCompare(a.id, "en"),
+        (b.date || "").localeCompare(a.date || "", "en") || b.id.localeCompare(a.id, "en"),
     );
   const start: StartItem[] = source.start.map((item) => ({
     ...item,
@@ -292,7 +311,8 @@ export function getContent(root = contentRoot()) {
   return { book: source.book, archive, chapters, pages: source.pages, start };
 }
 
-export function formatDate(value: string) {
+export function formatDate(value?: string) {
+  if (!value) return "";
   return new Intl.DateTimeFormat("en-GB", {
     day: "numeric",
     month: "short",

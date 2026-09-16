@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { localPreview } from "./preview";
 
 export const siteUrl = "https://hillmade.uk";
 export const siteName = "Jonathan Hill · A novel in public";
@@ -47,6 +48,7 @@ export function pageMetadata(
   return {
     title,
     description,
+    ...(localPreview() ? { robots: { index: false, follow: false } } : {}),
     alternates: {
       canonical: absoluteUrl(pathname),
       types: { "application/rss+xml": absoluteUrl("/feed.xml") },

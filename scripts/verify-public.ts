@@ -61,7 +61,7 @@ async function main() {
   assert.ok(feed.headers.get("content-type")?.includes("application/rss+xml"));
   const feedText = await feed.text();
   assert.ok(feedText.includes('<rss version="2.0"'));
-  assert.equal((feedText.match(/<item>/g) || []).length, archive.length);
+  assert.equal((feedText.match(/<item>/g) || []).length, archive.filter(item => !item.preview && item.date).length);
   assert.ok(!feedText.includes(privateSentinel));
   const sitemap = await (await fetch(new URL("/sitemap.xml", origin))).text();
   assert.equal((sitemap.match(/<loc>/g) || []).length, pages.length);
@@ -72,7 +72,7 @@ async function main() {
   for (const entry of [
     ...readSources().archive,
     ...readSources().chapters,
-  ].filter((item) => !item.published)) {
+  ].filter((item) => !item.published && !item.preview)) {
     const folder = "number" in entry ? "chapters" : "archive";
     assert.equal(
       (await fetch(new URL(`/${folder}/${entry.slug}`, origin))).status,

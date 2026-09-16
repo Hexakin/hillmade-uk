@@ -1,19 +1,23 @@
 ---
-title: Every book starts somewhere.
-description: "New here? This is the beginning of Jonathan Hill's novel in public: how to read the archive, find draft chapters and follow along."
+title: "Start with the story."
+description: "We Ruined Ourselves: the working draft, the writing notebook, and how chapter versions work."
 ---
-I'm writing a novel in public. As the story develops, I'm sharing excerpts, characters, discoveries, rewrites and the occasional full draft chapter.
+I'm writing my first novel, **We Ruined Ourselves**. It's a family story set in Alderbourne, a city built by corporations. There are already 25 chapters; this isn't a project starting from a blank page.
 
-You can follow the story, or follow the work of making it. Both belong here.
+## Read the novel
 
-## A note about drafts
+[Start with Chapter One](/chapters/chapter-01), or find your place in the [chapter index](/chapters). Read Chapters 1–25, each in its first edition: **v1**.
 
-Earlier entries may disagree with later ones. A character might change. A scene might disappear. A chapter might be rewritten from the first sentence. I'll keep the history so you can see how the book changed.
+These are working drafts, not a finished book. They contain strong language, coercion and family violence.
 
-The chapters are working drafts. They aren't promises about the finished novel.
+## What changes, and what stays
 
-## Find your way in
+New chapters will start at v1. When an existing chapter gets a public revision, its version will advance independently to v2, v3 and so on. Its address will stay the same, with the current version shown on the page and in the index. Private edits won't silently replace the edition readers have seen.
 
-The archive runs from newest to oldest. Switch to **Oldest first** if you want to read from the beginning. The chapter index keeps the currently available drafts in reading order, with revision notes where they apply.
+Later revisions will have their own dates and short change notes. Each chapter page shows the current edition; earlier versions aren't available to browse.
 
-If a chapter is later withdrawn, its place in the history will remain.
+## Follow the making of it
+
+The [writing notebook](/archive) is separate from the novel's reading order. It has an introduction, opening-chapter notes on Alderbourne and the Ashworths, and a short excerpt. Notes that discuss story details carry a reading boundary or spoiler warning.
+
+[X / @hexakin](https://x.com/hexakin) is the place for conversation and shorter updates. This website is the reading home. New chapters will follow as they're ready, rather than on a promised weekly schedule.

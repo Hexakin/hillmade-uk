@@ -130,4 +130,14 @@ Store approved public images in `public/`, optimise them, and use Markdown `![A 
 
 Hermes may propose files using these schemas. Keep proposals outside the published content until you review them. Approval consists of reviewing the exact text/metadata, setting `published: true` and committing/deploying through the normal human-controlled workflow. This repository contains no autonomous publishing hook.
 
+## Local approval previews and chapter versions
+
+A chapter's numeric `version` is a positive integer. First releases default to 1; set it explicitly for new packages. `status: public` means v1. Later editions use `status: revised`, `version: 2` or greater, a genuine `updatedAt` and a public `revisionNote`. Each chapter advances independently. Preserve the stable ID, slug and original date, and freeze the previous public source outside this repository before replacing it. Legacy first releases without a version read as v1; legacy revised records must be explicitly migrated to their evidenced version (do not infer historical revisions).
+
+For an approved **local preparation**, chapters and archive entries may use `preview: true` with `published: false`. Preview chapters use `status: public` and version 1; reader-facing UI says `Working draft` and `v1`, exactly as it will on release. Do not set a publication date on these records. Archive `date` may be absent only in preview mode. Unknown release dates are omitted from reader UI, share cards, structured metadata and the sitemap. Undated preview notes are excluded from RSS, not given invented pubDate values.
+
+Build and run this package with `LOCAL_CONTENT_PREVIEW=1`, bound to `127.0.0.1`. Noindex metadata keeps it out of search; there is no reader-facing approval banner. Hosting and approval state belong in private receipts, not public copy. Content validation fails closed without this opt-in when preview records exist, and refuses preview projection on Vercel. This is an accident guard, not an access-control system: do not upload the preview build or push the content to public Git.
+
+After exact publication approval, set genuine release dates, remove `preview` (or set false), set `published: true`, and rerun all checks without the local flag. The reader-facing copy is already finished and needs no deployment-time transformation. Dates and exact copy remain part of that review. No automatic version archive or publication action is implemented.
+
 Runtime schemas are in `lib/content.ts`. Templates are outside the content tree on purpose: they never become published material.

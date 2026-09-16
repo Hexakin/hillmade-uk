@@ -1,5 +1,26 @@
 [
-  { "label": "Understand the experiment", "note": "A novel, and a record of how it gets written.", "kind": "page", "target": "/start" },
-  { "label": "Read from the beginning", "note": "The writing archive, in chronological order.", "kind": "page", "target": "/archive?order=oldest" },
-  { "label": "Find the draft chapters", "note": "The publicly available manuscript, in reading order.", "kind": "page", "target": "/chapters" }
+  {
+    "label": "Start with Chapter One",
+    "note": "Begin We Ruined Ourselves. Working draft · v1.",
+    "kind": "chapter",
+    "target": "wro-chapter-01"
+  },
+  {
+    "label": "Find your chapter",
+    "note": "All 25 chapters in reading order, with current versions.",
+    "kind": "page",
+    "target": "/chapters"
+  },
+  {
+    "label": "About the book and its versions",
+    "note": "What this draft is, and how it will change.",
+    "kind": "page",
+    "target": "/start"
+  },
+  {
+    "label": "Explore the writing notebook",
+    "note": "Project context, characters and world details—not the novel’s reading order.",
+    "kind": "page",
+    "target": "/archive"
+  }
 ]

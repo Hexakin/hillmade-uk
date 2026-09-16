@@ -45,7 +45,7 @@ export default async function ChapterPage({
         </Link>
         <p className="meta metadata-line">
           <span className="type-mark">
-            Chapter {String(chapter.number).padStart(2, "0")}
+            Chapter {String(chapter.number).padStart(2, "0")} · v{chapter.version}
           </span>
           <span>
             {chapter.status === "withdrawn" ||
@@ -53,7 +53,7 @@ export default async function ChapterPage({
               ? "Draft withdrawn"
               : chapter.status === "upcoming"
                 ? "Upcoming"
-                : `${chapter.status} draft`}
+                : chapter.status === "revised" ? "Revised working draft" : "Working draft"}
           </span>
           {chapter.firstPublishedAt && (
             <time dateTime={chapter.firstPublishedAt}>
@@ -82,8 +82,7 @@ export default async function ChapterPage({
         >
           <Prose body={chapter.body} />
           <p className="meta reader-colophon">
-            End of chapter {String(chapter.number).padStart(2, "0")} / A public
-            working draft
+            End of chapter {String(chapter.number).padStart(2, "0")} / v{chapter.version} / Working draft
           </p>
         </article>
       ) : (

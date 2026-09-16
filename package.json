@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
-    "test": "tsx --test tests/*.test.ts",
+    "test": "tsx --test tests/*.test.ts tests/*.test.tsx",
     "content:validate": "tsx scripts/validate-content.ts",
     "publication:report": "tsx scripts/publication.ts report",
     "publication:withdraw": "tsx scripts/publication.ts withdraw",

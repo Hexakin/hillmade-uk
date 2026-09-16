@@ -39,20 +39,20 @@ export function shareImage(key: string, root = contentRoot()) {
   let item = Object.hasOwn(staticPages, key) ? staticPages[key] : undefined;
   if (key === "home")
     item = {
-      title: lifecycleCopy[book.phase].lines.join(" "),
-      detail: lifecycleCopy[book.phase].subtitle,
+      title: book.workingTitle || lifecycleCopy[book.phase].lines.join(" "),
+      detail: book.status,
     };
   const entry = archive.find((item) => `archive--${item.slug}` === key);
   const chapter = chapters.find((item) => `chapters--${item.slug}` === key);
   if (entry)
     item = {
       title: entry.title,
-      detail: `${formatDate(entry.date)}${entry.day ? ` / Day ${entry.day}` : ""} / ${entry.type}`,
+      detail: [entry.date ? formatDate(entry.date) : "", entry.day ? `Day ${entry.day}` : "", entry.type].filter(Boolean).join(" / "),
     };
   if (chapter)
     item = {
       title: chapter.title,
-      detail: `Chapter ${String(chapter.number).padStart(2, "0")} / ${!chapter.bodyAvailable && chapter.status !== "upcoming" ? "draft withdrawn" : chapter.status}${chapter.firstPublishedAt ? ` / ${formatDate(chapter.firstPublishedAt)}` : ""}`,
+      detail: `Chapter ${String(chapter.number).padStart(2, "0")} / v${chapter.version} / ${!chapter.bodyAvailable && chapter.status !== "upcoming" ? "Draft withdrawn" : chapter.status === "upcoming" ? "Upcoming" : "Working draft"}${chapter.firstPublishedAt ? ` / ${formatDate(chapter.firstPublishedAt)}` : ""}`,
     };
   if (!item) return null;
   const font = fs.readFileSync(
