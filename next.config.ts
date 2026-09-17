@@ -5,8 +5,12 @@ const nextConfig: NextConfig = {
   turbopack: { root: process.cwd() },
   outputFileTracingRoot: process.cwd(),
   outputFileTracingIncludes: {
-    "/archive": ["./content/**/*"],
-    "/share/*": ["./assets/fonts/newsreader.ttf"],
+    "/archive": ["./content/**/*", "./content/**/.gitkeep"],
+    "/share/*": [
+      "./content/**/*",
+      "./content/**/.gitkeep",
+      "./assets/fonts/newsreader.ttf",
+    ],
   },
 };
 

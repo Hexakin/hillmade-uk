@@ -20,7 +20,7 @@ export function Prose({ body }: { body: string }) {
 export function MetadataLine({ entry }: { entry: ArchiveEntry }) {
   return (
     <p className="meta metadata-line">
-      <time dateTime={entry.date}>{formatDate(entry.date)}</time>
+      {entry.date && <time dateTime={entry.date}>{formatDate(entry.date)}</time>}
       {entry.day && <span>Day {String(entry.day).padStart(3, "0")}</span>}
       <span className="type-mark">
         {entry.type === "cut" ? "Cut material" : entry.type}
@@ -100,7 +100,7 @@ export function ChapterList({ chapters }: { chapters: Chapter[] }) {
               <span className="chapter-description">{chapter.description}</span>
             </span>
             <span className="meta chapter-state">
-              {chapter.status}
+              {chapter.status === "public" ? "Working draft" : chapter.status} · v{chapter.version}
               <span aria-hidden="true"> ↗</span>
             </span>
           </Link>

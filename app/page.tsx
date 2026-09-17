@@ -10,10 +10,11 @@ import { getContent } from "@/lib/content";
 import { pageMetadata, lifecycleCopy } from "@/lib/site";
 
 export function generateMetadata() {
-  const copy = lifecycleCopy[getContent().book.phase];
+  const { book } = getContent();
+  const copy = lifecycleCopy[book.phase];
   return pageMetadata(
-    `${copy.lines.join(" ")} ${copy.subtitle}`,
-    copy.description,
+    book.workingTitle || `${copy.lines.join(" ")} ${copy.subtitle}`,
+    book.premise || copy.description,
     "/",
   );
 }
@@ -65,8 +66,8 @@ export default function Home() {
             )}
           </p>
           <div className="hero-actions">
-            <Link href="/start" className="button-paper">
-              Start at the beginning <span aria-hidden="true">↗</span>
+            <Link href={chapters[0] ? `/chapters/${chapters[0].slug}` : "/start"} className="button-paper">
+              {chapters[0] ? "Start with Chapter One" : "Start at the beginning"} <span aria-hidden="true">↗</span>
             </Link>
             <Link
               href={archive[0] ? `/archive/${archive[0].slug}` : "/archive"}
@@ -135,7 +136,7 @@ export default function Home() {
           </Link>
           <span className="sheet-foot meta">
             A work in progress /{" "}
-            {latestChapter ? "Public draft" : "Not yet published"}
+            {latestChapter ? `Working draft v${latestChapter.version}` : "Not yet published"}
           </span>
         </aside>
       </section>

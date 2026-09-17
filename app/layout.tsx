@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Newsreader, Source_Sans_3 } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
 import { siteUrl, siteName } from "@/lib/site";
+import { localPreview } from "@/lib/content";
 import "./globals.css";
 
 const sans = Source_Sans_3({
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   title: { default: siteName, template: "%s · Jonathan Hill" },
   description:
     "I'm writing a novel in public. Follow the excerpts, discoveries, rewrites and draft chapters as the book becomes itself.",
-  robots: { index: true, follow: true },
+  robots: { index: !localPreview(), follow: !localPreview() },
   authors: [{ name: "Jonathan Hill" }],
   manifest: "/manifest.webmanifest",
 };

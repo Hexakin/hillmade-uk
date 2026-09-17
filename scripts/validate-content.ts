@@ -1,5 +1,5 @@
 import { readSources } from "../lib/content";
 const { archive, chapters } = readSources();
 console.log(
-  `Content valid: ${archive.filter((entry) => entry.published).length} public archive entries, ${chapters.filter((chapter) => chapter.published).length} public chapter records.`,
+  `Content valid: ${archive.filter((entry) => entry.published).length} public archive entries, ${chapters.filter((chapter) => chapter.published).length} public chapter records; ${archive.filter(entry => entry.preview).length} local-preview archive entries, ${chapters.filter(chapter => chapter.preview).length} local-preview chapters.`,
 );

@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ),
     ...archive.map((item) => ({
       url: absoluteUrl(`/archive/${item.slug}`),
-      lastModified: `${item.date}T00:00:00Z`,
+      ...(item.date ? { lastModified: `${item.date}T00:00:00Z` } : {}),
     })),
     ...chapters.map((item) => ({
       url: absoluteUrl(`/chapters/${item.slug}`),

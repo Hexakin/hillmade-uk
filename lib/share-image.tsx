@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { ImageResponse } from "next/og";
-import { formatDate, getContent } from "./content";
+import { contentRoot, formatDate, getContent } from "./content";
 import { lifecycleCopy } from "./site";
 const staticPages: Record<string, { title: string; detail: string }> = {
   home: { title: "I'm writing a novel.", detail: "You can watch me do it." },
@@ -26,33 +26,33 @@ const staticPages: Record<string, { title: string; detail: string }> = {
     detail: "A small site. A small amount of data.",
   },
 };
-export function shareKeys() {
-  const { archive, chapters } = getContent();
+export function shareKeys(root = contentRoot()) {
+  const { archive, chapters } = getContent(root);
   return [
     ...Object.keys(staticPages),
     ...archive.map((item) => `archive--${item.slug}`),
     ...chapters.map((item) => `chapters--${item.slug}`),
   ];
 }
-export function shareImage(key: string) {
-  const { archive, chapters, book } = getContent();
+export function shareImage(key: string, root = contentRoot()) {
+  const { archive, chapters, book } = getContent(root);
   let item = Object.hasOwn(staticPages, key) ? staticPages[key] : undefined;
   if (key === "home")
     item = {
-      title: lifecycleCopy[book.phase].lines.join(" "),
-      detail: lifecycleCopy[book.phase].subtitle,
+      title: book.workingTitle || lifecycleCopy[book.phase].lines.join(" "),
+      detail: book.status,
     };
   const entry = archive.find((item) => `archive--${item.slug}` === key);
   const chapter = chapters.find((item) => `chapters--${item.slug}` === key);
   if (entry)
     item = {
       title: entry.title,
-      detail: `${formatDate(entry.date)}${entry.day ? ` / Day ${entry.day}` : ""} / ${entry.type}`,
+      detail: [entry.date ? formatDate(entry.date) : "", entry.day ? `Day ${entry.day}` : "", entry.type].filter(Boolean).join(" / "),
     };
   if (chapter)
     item = {
       title: chapter.title,
-      detail: `Chapter ${String(chapter.number).padStart(2, "0")} / ${!chapter.bodyAvailable && chapter.status !== "upcoming" ? "draft withdrawn" : chapter.status}${chapter.firstPublishedAt ? ` / ${formatDate(chapter.firstPublishedAt)}` : ""}`,
+      detail: `Chapter ${String(chapter.number).padStart(2, "0")} / v${chapter.version} / ${!chapter.bodyAvailable && chapter.status !== "upcoming" ? "Draft withdrawn" : chapter.status === "upcoming" ? "Upcoming" : "Working draft"}${chapter.firstPublishedAt ? ` / ${formatDate(chapter.firstPublishedAt)}` : ""}`,
     };
   if (!item) return null;
   const font = fs.readFileSync(

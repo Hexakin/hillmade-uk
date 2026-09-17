@@ -11,10 +11,16 @@ import {
   readSources,
   selectArchive,
 } from "../lib/content";
+import { shareImage, shareKeys } from "../lib/share-image";
 import { generateFeed } from "../lib/feed";
 import { renderMarkdown } from "../lib/markdown";
 import { changeFullText, publicationReport } from "../lib/publication";
-import { createFixtures, privateSentinel, withdrawnSentinel } from "./fixtures";
+import {
+  createFixtures,
+  privateSentinel,
+  withdrawnSentinel,
+  writeMarkdown,
+} from "./fixtures";
 const root = fs.mkdtempSync(path.join(os.tmpdir(), "hillmade-content-test-"));
 createFixtures(root);
 after(() => {
@@ -149,6 +155,76 @@ test("RSS uses absolute URLs, escapes XML and carries no manuscript bodies", () 
   assert.ok(feed.includes("https://hillmade.uk/archive/qa-excerpt"));
   assert.ok(!feed.includes("ARCHIVE_MANUSCRIPT_SENTINEL"));
   assert.ok(!feed.includes(privateSentinel));
+});
+test("missing archive and chapter folders do not throw, and unknown share keys stay 404", () => {
+  const emptyRoot = fs.mkdtempSync(
+    path.join(os.tmpdir(), "hillmade-empty-content-"),
+  );
+  try {
+    fs.mkdirSync(path.join(emptyRoot, "book"));
+    fs.mkdirSync(path.join(emptyRoot, "pages"));
+    fs.writeFileSync(
+      path.join(emptyRoot, "book/book.json"),
+      JSON.stringify({
+        workingTitle: null,
+        premise: null,
+        startedAt: null,
+        phase: "writing",
+        status: "At the beginning",
+        fullTextEnabled: true,
+        wordCount: null,
+        releaseUrl: null,
+      }),
+    );
+    writeMarkdown(
+      emptyRoot,
+      "pages",
+      "start.md",
+      {
+        title: "LOCAL TEST FIXTURE — start",
+        description: "Local test page, not production writing content.",
+      },
+      "LOCAL TEST FIXTURE.",
+    );
+    writeMarkdown(
+      emptyRoot,
+      "pages",
+      "about.md",
+      {
+        title: "LOCAL TEST FIXTURE — about",
+        description: "Local test page, not production writing content.",
+      },
+      "LOCAL TEST FIXTURE.",
+    );
+    fs.writeFileSync(
+      path.join(emptyRoot, "pages/start-here.json"),
+      JSON.stringify([
+        {
+          kind: "page",
+          target: "/archive",
+          label: "Test empty archive",
+          note: "Local test fixture",
+        },
+      ]),
+    );
+    const sources = readSources(emptyRoot);
+    assert.deepEqual(sources.archive, []);
+    assert.deepEqual(sources.chapters, []);
+    const content = getContent(emptyRoot);
+    assert.deepEqual(content.archive, []);
+    assert.deepEqual(content.chapters, []);
+    assert.ok(shareKeys(emptyRoot).includes("home"));
+    assert.equal(
+      shareKeys(emptyRoot).some((key) => key.startsWith("archive--")),
+      false,
+    );
+    assert.equal(shareImage("test", emptyRoot), null);
+    assert.equal(shareImage("not-a-share-page", emptyRoot), null);
+  } finally {
+    assert.equal(path.dirname(emptyRoot), os.tmpdir());
+    assert.ok(path.basename(emptyRoot).startsWith("hillmade-empty-content-"));
+    fs.rmSync(emptyRoot, { recursive: true, force: true });
+  }
 });
 test("Markdown strips scripts, dangerous links and event handlers", () => {
   const html = renderMarkdown(
