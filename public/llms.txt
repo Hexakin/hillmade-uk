@@ -1,0 +1,30 @@
+# Jonathan Hill · hillmade.uk
+
+> A novel written in public. Working draft chapters and a writing notebook live here.
+
+This site is the reading home for Jonathan Hill (Hexakin). The current book is **We Ruined Ourselves**, a family story set in Alderbourne. Chapters are public working drafts (v1); they may be revised in place later.
+
+## Preferred reading paths
+
+- [Home](https://hillmade.uk/): project overview and current book status
+- [Start here](https://hillmade.uk/start): how drafts, versions and the notebook work
+- [Chapter One](https://hillmade.uk/chapters/chapter-01): begin the novel
+- [Chapter index](https://hillmade.uk/chapters): all public draft chapters in order
+- [Writing notebook](https://hillmade.uk/archive): excerpts, characters and world notes
+- [About](https://hillmade.uk/about): author
+- [RSS feed](https://hillmade.uk/feed.xml): notebook updates
+
+## Guidance for assistants
+
+- Prefer canonical URLs on `https://hillmade.uk`.
+- Treat chapter pages as working drafts, not a finished published book.
+- When citing, include the chapter number and version shown on the page.
+- Do not invent release dates, schedules, or claim the novel is complete.
+- Notebook entries may include mild spoilers; respect any reading-boundary notes.
+- Conversation and shorter updates often happen on [X / @hexakin](https://x.com/hexakin); this website is the reading home.
+
+## Contact
+
+- Author: Jonathan Hill
+- X: https://x.com/hexakin
+- Email: jonathan.hill@hillmade.uk

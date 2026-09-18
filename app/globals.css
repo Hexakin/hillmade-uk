@@ -673,11 +673,67 @@ a {
   font-size: clamp(3rem, 6.5vw, 5.1rem);
   margin-top: 20px;
 }
-.page-heading > p:last-child {
+.page-heading > p:not(.meta):not(.page-heading-action) {
   color: var(--muted);
   margin-top: 23px;
   max-width: 38rem;
   font-size: 1.1rem;
+}
+.page-heading-action {
+  margin-top: 28px;
+}
+.book-status-link {
+  margin-top: 26px;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+.book-status-link:hover {
+  color: var(--red);
+}
+.chapter-after .chapter-pagination {
+  align-items: center;
+}
+.chapter-continue {
+  margin-left: auto;
+}
+.chapter-welcome a {
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+}
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.55rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes underline-draw {
+  from {
+    text-decoration-color: transparent;
+  }
+  to {
+    text-decoration-color: var(--red-dark);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-main {
+    animation: rise-in 0.65s ease both;
+  }
+  .book-status {
+    animation: rise-in 0.7s ease 0.1s both;
+  }
+  .hero-subtitle em {
+    animation: underline-draw 0.8s ease 0.35s both;
+  }
+  .revision-hand {
+    transition: color 200ms ease;
+  }
+  .revision-rule:hover .revision-hand {
+    color: #d49286;
+  }
 }
 .archive-controls {
   display: flex;
@@ -1358,7 +1414,7 @@ a {
   .page-heading h1 {
     font-size: 3.3rem;
   }
-  .page-heading > p:last-child {
+  .page-heading > p:not(.meta):not(.page-heading-action) {
     font-size: 1rem;
   }
   .archive-controls {

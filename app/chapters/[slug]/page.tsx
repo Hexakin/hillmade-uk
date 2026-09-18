@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Newsletter, Prose } from "@/components/Editorial";
 import { formatDate, getContent } from "@/lib/content";
 import { pageMetadata } from "@/lib/site";
+import { chapterStructuredData, jsonLd } from "@/lib/structured-data";
 export function generateStaticParams() {
   return getContent().chapters.map(({ slug }) => ({ slug }));
 }
@@ -12,20 +13,17 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const chapter = getContent().chapters.find(
-    (chapter) => chapter.slug === slug,
-  );
+  const { book, chapters } = getContent();
+  const chapter = chapters.find((chapter) => chapter.slug === slug);
   if (!chapter) notFound();
-  return pageMetadata(
-    `Chapter ${chapter.number}: ${chapter.title}`,
-    chapter.description,
-    `/chapters/${slug}`,
-    {
-      article: true,
-      date: chapter.firstPublishedAt,
-      updated: chapter.updatedAt,
-    },
-  );
+  const title = book.workingTitle
+    ? `${chapter.title} · ${book.workingTitle}`
+    : `Chapter ${chapter.number}: ${chapter.title}`;
+  return pageMetadata(title, chapter.description, `/chapters/${slug}`, {
+    article: true,
+    date: chapter.firstPublishedAt,
+    updated: chapter.updatedAt,
+  });
 }
 export default async function ChapterPage({
   params,
@@ -33,10 +31,12 @@ export default async function ChapterPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const { chapters } = getContent();
+  const { book, chapters } = getContent();
   const index = chapters.findIndex((chapter) => chapter.slug === slug);
   if (index === -1) notFound();
   const chapter = chapters[index];
+  const previous = chapters[index - 1];
+  const next = chapters[index + 1];
   return (
     <main id="main" tabIndex={-1}>
       <header className="article-heading article-shell">
@@ -45,7 +45,8 @@ export default async function ChapterPage({
         </Link>
         <p className="meta metadata-line">
           <span className="type-mark">
-            Chapter {String(chapter.number).padStart(2, "0")} · v{chapter.version}
+            Chapter {String(chapter.number).padStart(2, "0")} · v
+            {chapter.version}
           </span>
           <span>
             {chapter.status === "withdrawn" ||
@@ -53,7 +54,9 @@ export default async function ChapterPage({
               ? "Draft withdrawn"
               : chapter.status === "upcoming"
                 ? "Upcoming"
-                : chapter.status === "revised" ? "Revised working draft" : "Working draft"}
+                : chapter.status === "revised"
+                  ? "Revised working draft"
+                  : "Working draft"}
           </span>
           {chapter.firstPublishedAt && (
             <time dateTime={chapter.firstPublishedAt}>
@@ -74,6 +77,18 @@ export default async function ChapterPage({
         {chapter.revisionNote && (
           <p className="content-note">{chapter.revisionNote}</p>
         )}
+        {chapter.bodyAvailable && chapter.number === 1 && (
+          <p className="content-note chapter-welcome">
+            Working draft of{" "}
+            {book.workingTitle ? (
+              <em>{book.workingTitle}</em>
+            ) : (
+              "the novel"
+            )}
+            . Contains strong language, coercion and family violence.{" "}
+            <Link href="/start">How versions work ↗</Link>
+          </p>
+        )}
       </header>
       {chapter.bodyAvailable ? (
         <article
@@ -82,7 +97,8 @@ export default async function ChapterPage({
         >
           <Prose body={chapter.body} />
           <p className="meta reader-colophon">
-            End of chapter {String(chapter.number).padStart(2, "0")} / v{chapter.version} / Working draft
+            End of chapter {String(chapter.number).padStart(2, "0")} / v
+            {chapter.version} / Working draft
           </p>
         </article>
       ) : (
@@ -99,7 +115,7 @@ export default async function ChapterPage({
           )}
         </article>
       )}
-      <div className="article-shell">
+      <div className="article-shell chapter-after">
         {chapter.xArticleUrl && (
           <p className="content-note">
             <a href={chapter.xArticleUrl}>
@@ -109,25 +125,38 @@ export default async function ChapterPage({
           </p>
         )}
         <nav className="chapter-pagination" aria-label="Chapter reading order">
-          {chapters[index - 1] && (
+          {previous ? (
             <Link
-              href={`/chapters/${chapters[index - 1].slug}`}
+              href={`/chapters/${previous.slug}`}
               className="text-link"
             >
-              ← Chapter {chapters[index - 1].number}
+              ← Chapter {previous.number}
             </Link>
+          ) : (
+            <span />
           )}
-          {chapters[index + 1] && (
+          {next ? (
             <Link
-              href={`/chapters/${chapters[index + 1].slug}`}
-              className="text-link"
+              href={`/chapters/${next.slug}`}
+              className="button-paper chapter-continue"
             >
-              Chapter {chapters[index + 1].number} →
+              Continue to Chapter {next.number}{" "}
+              <span aria-hidden="true">→</span>
+            </Link>
+          ) : (
+            <Link href="/#newsletter" className="button-paper chapter-continue">
+              Follow the next chapters <span aria-hidden="true">↗</span>
             </Link>
           )}
         </nav>
       </div>
       <Newsletter />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(chapterStructuredData(chapter, book)),
+        }}
+      />
     </main>
   );
 }

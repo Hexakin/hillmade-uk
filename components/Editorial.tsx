@@ -109,7 +109,15 @@ export function ChapterList({ chapters }: { chapters: Chapter[] }) {
     </ol>
   );
 }
-export function BookStatus({ book }: { book: Book }) {
+export function BookStatus({
+  book,
+  chapterCount = 0,
+  firstChapterHref,
+}: {
+  book: Book;
+  chapterCount?: number;
+  firstChapterHref?: string;
+}) {
   return (
     <aside className="book-status">
       <p className="meta section-label">
@@ -138,6 +146,12 @@ export function BookStatus({ book }: { book: Book }) {
                   : "Preparing for publication"}
           </dd>
         </div>
+        {chapterCount > 0 && (
+          <div>
+            <dt>Chapters</dt>
+            <dd>{chapterCount} public</dd>
+          </div>
+        )}
         {book.startedAt && (
           <div>
             <dt>Began</dt>
@@ -151,9 +165,15 @@ export function BookStatus({ book }: { book: Book }) {
           </div>
         )}
       </dl>
-      <p className="margin-note">
-        Nothing is set in ink.<span aria-hidden="true"> ↙</span>
-      </p>
+      {firstChapterHref ? (
+        <Link href={firstChapterHref} className="text-link book-status-link">
+          Begin with Chapter One <span aria-hidden="true">↗</span>
+        </Link>
+      ) : (
+        <p className="margin-note">
+          Nothing is set in ink.<span aria-hidden="true"> ↙</span>
+        </p>
+      )}
     </aside>
   );
 }
