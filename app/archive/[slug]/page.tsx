@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { MetadataLine, Newsletter, Prose } from "@/components/Editorial";
 import { getContent } from "@/lib/content";
-import { pageMetadata, absoluteUrl } from "@/lib/site";
+import { pageMetadata } from "@/lib/site";
+import { archiveStructuredData, jsonLd } from "@/lib/structured-data";
 export function generateStaticParams() {
   return getContent().archive.map(({ slug }) => ({ slug }));
 }
@@ -30,15 +31,6 @@ export default async function EntryPage({
   if (index === -1) notFound();
   const entry = archive[index];
   const chapter = chapters.find((chapter) => chapter.id === entry.chapter);
-  const structured = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: entry.title,
-    description: entry.summary,
-    datePublished: entry.date,
-    author: { "@type": "Person", name: "Jonathan Hill" },
-    mainEntityOfPage: absoluteUrl(`/archive/${slug}`),
-  };
   return (
     <main id="main" tabIndex={-1}>
       <article className="article-shell">
@@ -118,7 +110,7 @@ export default async function EntryPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structured).replaceAll("<", "\\u003c"),
+          __html: jsonLd(archiveStructuredData(entry)),
         }}
       />
       <Newsletter />

@@ -8,15 +8,18 @@ import {
 } from "@/components/Editorial";
 import { getContent } from "@/lib/content";
 import { pageMetadata, lifecycleCopy } from "@/lib/site";
+import { homeStructuredData, jsonLd } from "@/lib/structured-data";
 
 export function generateMetadata() {
   const { book } = getContent();
   const copy = lifecycleCopy[book.phase];
-  return pageMetadata(
-    book.workingTitle || `${copy.lines.join(" ")} ${copy.subtitle}`,
-    book.premise || copy.description,
-    "/",
-  );
+  const title = book.workingTitle
+    ? `${book.workingTitle} · a novel in public`
+    : `${copy.lines.join(" ")} ${copy.subtitle}`;
+  const description = book.premise
+    ? `${book.premise} Read the working draft chapters and writing notebook as the book becomes itself.`
+    : copy.description;
+  return pageMetadata(title, description, "/");
 }
 export default function Home() {
   const { book, archive, chapters, start } = getContent();
@@ -28,6 +31,7 @@ export default function Home() {
           a.updatedAt || a.firstPublishedAt || "",
         ) || b.number - a.number,
     )[0];
+  const firstChapter = chapters[0];
   const copy = lifecycleCopy[book.phase];
   return (
     <main id="main" tabIndex={-1}>
@@ -35,7 +39,9 @@ export default function Home() {
         <div className="hero-main">
           <p className="meta hero-kicker">
             <span className="red-line" />
-            {copy.kicker}
+            {book.workingTitle
+              ? `${book.workingTitle} · written in public`
+              : copy.kicker}
           </p>
           <h1 id="hero-title">
             {copy.lines[0]}
@@ -53,7 +59,17 @@ export default function Home() {
             )}
           </p>
           <p className="hero-copy">
-            {book.phase === "writing" ? (
+            {book.phase === "writing" && book.workingTitle ? (
+              <>
+                {book.premise ||
+                  "A family story, shared as working drafts rather than a finished book."}
+                <br className="desktop-break" />{" "}
+                {chapters.length
+                  ? `Start at Chapter One, or browse all ${chapters.length} public chapters.`
+                  : "Excerpts, discoveries and wrong turns live in the notebook while chapters arrive."}{" "}
+                Drafts change; the record stays.
+              </>
+            ) : book.phase === "writing" ? (
               <>
                 Excerpts, discoveries, characters, wrong turns.
                 <br className="desktop-break" /> I&apos;m sharing the work as
@@ -66,14 +82,17 @@ export default function Home() {
             )}
           </p>
           <div className="hero-actions">
-            <Link href={chapters[0] ? `/chapters/${chapters[0].slug}` : "/start"} className="button-paper">
-              {chapters[0] ? "Start with Chapter One" : "Start at the beginning"} <span aria-hidden="true">↗</span>
-            </Link>
             <Link
-              href={archive[0] ? `/archive/${archive[0].slug}` : "/archive"}
-              className="text-link"
+              href={firstChapter ? `/chapters/${firstChapter.slug}` : "/start"}
+              className="button-paper"
             >
-              {archive[0] ? "Read the latest update" : "Explore the notebook"}
+              {firstChapter
+                ? "Start with Chapter One"
+                : "Start at the beginning"}{" "}
+              <span aria-hidden="true">↗</span>
+            </Link>
+            <Link href="/start" className="text-link">
+              How reading works
               <span aria-hidden="true">↗</span>
             </Link>
           </div>
@@ -82,9 +101,21 @@ export default function Home() {
             <a href="https://x.com/hexakin">
               @hexakin on X <span aria-hidden="true">↗</span>
             </a>
+            {chapters.length > 0 && (
+              <>
+                {" "}
+                <span aria-hidden="true">·</span> Working drafts · v1
+              </>
+            )}
           </p>
         </div>
-        <BookStatus book={book} />
+        <BookStatus
+          book={book}
+          chapterCount={chapters.length}
+          firstChapterHref={
+            firstChapter ? `/chapters/${firstChapter.slug}` : undefined
+          }
+        />
       </section>
       <div className="revision-rule shell">
         <p>
@@ -136,7 +167,9 @@ export default function Home() {
           </Link>
           <span className="sheet-foot meta">
             A work in progress /{" "}
-            {latestChapter ? `Working draft v${latestChapter.version}` : "Not yet published"}
+            {latestChapter
+              ? `Working draft v${latestChapter.version}`
+              : "Not yet published"}
           </span>
         </aside>
       </section>
@@ -144,14 +177,30 @@ export default function Home() {
         <div>
           <p className="meta section-label">A place to begin</p>
           <h2 id="start-title">
-            Arrived halfway
-            <br />
-            through a thought?
+            {chapters.length
+              ? "New here?"
+              : (
+                <>
+                  Arrived halfway
+                  <br />
+                  through a thought?
+                </>
+              )}
           </h2>
           <p>
-            You don&apos;t have to catch up with a whole timeline.
-            <br />
-            Here&apos;s a way into the story.
+            {chapters.length ? (
+              <>
+                You don&apos;t need the whole timeline.
+                <br />
+                Begin the novel, learn how versions work, or open the notebook.
+              </>
+            ) : (
+              <>
+                You don&apos;t have to catch up with a whole timeline.
+                <br />
+                Here&apos;s a way into the story.
+              </>
+            )}
           </p>
         </div>
         <StartHereList items={start} />
@@ -164,6 +213,12 @@ export default function Home() {
         </p>
       )}
       <Newsletter />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(homeStructuredData(book, chapters.length)),
+        }}
+      />
     </main>
   );
 }

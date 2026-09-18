@@ -16,7 +16,9 @@ export default function StartPage() {
         </p>
         <h1>{pages.start.title}</h1>
         <p>
-          If you found one interesting post, you&apos;re in the right place.
+          {book.workingTitle
+            ? `New to ${book.workingTitle}? Begin the draft, learn how versions work, then explore the notebook.`
+            : "If you found one interesting post, you're in the right place."}
         </p>
       </header>
       <div className="reading-layout shell">
