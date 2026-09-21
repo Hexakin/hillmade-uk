@@ -4,6 +4,7 @@ import { Newsreader, Source_Sans_3 } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
 import { getContent, localPreview } from "@/lib/content";
 import { siteUrl, siteName } from "@/lib/site";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const sans = Source_Sans_3({
@@ -78,6 +79,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </nav>
           <p className="footer-note">Written in Stockport. Kept here.</p>
         </footer>
+        <Analytics />
       </body>
     </html>
   );

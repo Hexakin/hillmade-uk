@@ -17,6 +17,7 @@
     "verify:public": "tsx scripts/verify-public.ts"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "gray-matter": "^4.0.3",
     "marked": "^18.0.13",
     "next": "16.3.3",

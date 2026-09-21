@@ -43,6 +43,8 @@ export function NewsletterForm({
   return (
     <form
       className="newsletter-form"
+      method="post"
+      action="/api/subscribe"
       onSubmit={submit}
       aria-describedby={`${id}-note`}
     >
