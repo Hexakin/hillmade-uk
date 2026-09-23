@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { getContent, readSources } from "../lib/content";
 import { siteUrl } from "../lib/site";
+import { feedItems } from "../lib/feed";
 import {
   privateSentinel,
   withdrawnSentinel,
@@ -61,7 +62,7 @@ async function main() {
   assert.ok(feed.headers.get("content-type")?.includes("application/rss+xml"));
   const feedText = await feed.text();
   assert.ok(feedText.includes('<rss version="2.0"'));
-  assert.equal((feedText.match(/<item>/g) || []).length, archive.filter(item => !item.preview && item.date).length);
+  assert.equal((feedText.match(/<item>/g) || []).length, feedItems(archive, chapters).length);
   assert.ok(!feedText.includes(privateSentinel));
   const sitemap = await (await fetch(new URL("/sitemap.xml", origin))).text();
   assert.equal((sitemap.match(/<loc>/g) || []).length, pages.length);

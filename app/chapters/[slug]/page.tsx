@@ -4,6 +4,7 @@ import { Newsletter, Prose } from "@/components/Editorial";
 import { formatDate, getContent } from "@/lib/content";
 import { pageMetadata } from "@/lib/site";
 import { chapterStructuredData, jsonLd } from "@/lib/structured-data";
+import { RememberChapter } from "@/components/ContinueReading";
 export function generateStaticParams() {
   return getContent().chapters.map(({ slug }) => ({ slug }));
 }
@@ -62,6 +63,9 @@ export default async function ChapterPage({
             <time dateTime={chapter.firstPublishedAt}>
               {formatDate(chapter.firstPublishedAt)}
             </time>
+          )}
+          {chapter.readingMinutes > 0 && (
+            <span>{chapter.readingMinutes} min read</span>
           )}
         </p>
         <h1>{chapter.title}</h1>
@@ -150,6 +154,16 @@ export default async function ChapterPage({
           )}
         </nav>
       </div>
+      {chapter.bodyAvailable && (
+        <RememberChapter
+          chapter={{
+            slug: chapter.slug,
+            number: chapter.number,
+            title: chapter.title,
+            total: chapters.length,
+          }}
+        />
+      )}
       <Newsletter />
       <script
         type="application/ld+json"

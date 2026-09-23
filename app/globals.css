@@ -480,6 +480,13 @@ a {
   padding-top: 15px;
   border-top: 1px solid #bfb6a6;
 }
+.sheet-foot-link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.sheet-foot-link:hover {
+  color: var(--red-dark);
+}
 .start-section {
   border-top: 1px solid var(--rule);
   padding-block: 55px;

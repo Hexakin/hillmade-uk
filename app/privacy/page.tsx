@@ -31,8 +31,10 @@ export default function PrivacyPage() {
               : "Email signup isn't open yet. MailerLite is the intended newsletter processor. Until it is configured, a signup attempt won't store your email or send it to that service."}
           </p>
           <p>
-            Once signup is open, you&apos;ll be asked to confirm by email. The
-            provider keeps the email address and subscription/confirmation
+            {configured && !testing
+              ? "You'll be asked to confirm by email before you're added."
+              : "Once signup is open, you'll be asked to confirm by email."}{" "}
+            The provider keeps the email address and subscription/confirmation
             history needed to manage the list. I use your consent to send
             updates about the writing and the finished book; I don&apos;t sell
             the list.
@@ -55,14 +57,35 @@ export default function PrivacyPage() {
             <a href="https://www.mailerlite.com/legal/data-processing-agreement">
               data processing agreement
             </a>{" "}
-            describe its processing and any international transfers. These
-            should be reviewed before signup is enabled.
+            describe its processing and any international transfers.
           </p>
           <h2>Visiting this site</h2>
           <p>
-            This site doesn&apos;t use advertising, analytics cookies or X
+            This site doesn&apos;t use advertising, tracking cookies or X
             embeds. Following an external link takes you to a service with its
             own privacy practices.
+          </p>
+          <h2>Counting visits</h2>
+          <p>
+            To see roughly how many people read each chapter, the site uses{" "}
+            <a href="https://vercel.com/docs/analytics/privacy-policy">
+              Vercel Web Analytics
+            </a>{" "}
+            and{" "}
+            <a href="https://www.cloudflare.com/web-analytics/">
+              Cloudflare Web Analytics
+            </a>
+            . Neither sets cookies or builds a profile of you across other
+            sites. They record things like the page viewed, the referring site,
+            and your broad location, device type and browser, and show me only
+            aggregated totals. Vercel identifies a visit using a hash of the
+            request that is discarded after 24 hours.
+          </p>
+          <p>
+            Separately, the home page remembers which chapter you last read so
+            it can offer to take you back there. That is stored only in your
+            own browser (local storage), is never sent to the site, and you can
+            clear it by clearing this site&apos;s data in your browser.
           </p>
           <p>
             Vercel hosts the site and Cloudflare serves the domain. They may
@@ -80,8 +103,8 @@ export default function PrivacyPage() {
             is managed by the newsletter provider.
           </p>
           <p>
-            This notice describes the intended setup. If the processor or data
-            use changes, I&apos;ll update it here.
+            If the services or the way data is used change, I&apos;ll update
+            this page.
           </p>
         </article>
       </div>

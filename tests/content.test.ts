@@ -12,7 +12,7 @@ import {
   selectArchive,
 } from "../lib/content";
 import { shareImage, shareKeys } from "../lib/share-image";
-import { generateFeed } from "../lib/feed";
+import { chapterFeedTitle, generateFeed } from "../lib/feed";
 import { renderMarkdown } from "../lib/markdown";
 import { changeFullText, publicationReport } from "../lib/publication";
 import {
@@ -155,6 +155,33 @@ test("RSS uses absolute URLs, escapes XML and carries no manuscript bodies", () 
   assert.ok(feed.includes("https://hillmade.uk/archive/qa-excerpt"));
   assert.ok(!feed.includes("ARCHIVE_MANUSCRIPT_SENTINEL"));
   assert.ok(!feed.includes(privateSentinel));
+});
+test("RSS announces public chapters but never withdrawn or private ones", () => {
+  const { archive, chapters } = getContent(root);
+  const feed = generateFeed(archive, chapters);
+  assert.ok(feed.includes("https://hillmade.uk/chapters/qa-public"));
+  assert.ok(feed.includes("<category>chapter</category>"));
+  assert.ok(!feed.includes("/chapters/qa-withdrawn"));
+  assert.ok(!feed.includes("/chapters/qa-private-chapter"));
+  assert.ok(!feed.includes(privateSentinel));
+  assert.ok(!feed.includes(withdrawnSentinel));
+  assert.equal(chapterFeedTitle({ number: 3, title: "Chapter 3" }), "Chapter 3");
+  assert.equal(
+    chapterFeedTitle({ number: 2, title: "The Mirror" }),
+    "Chapter 2: The Mirror",
+  );
+});
+test("chapters carry a word count and reading time only when text is public", () => {
+  const { chapters } = getContent(root);
+  for (const chapter of chapters) {
+    if (chapter.bodyAvailable) {
+      assert.ok(chapter.words > 0);
+      assert.ok(chapter.readingMinutes >= 1);
+    } else {
+      assert.equal(chapter.words, 0);
+      assert.equal(chapter.readingMinutes, 0);
+    }
+  }
 });
 test("missing archive and chapter folders do not throw, and unknown share keys stay 404", () => {
   const emptyRoot = fs.mkdtempSync(

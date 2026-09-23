@@ -6,6 +6,7 @@ import {
   Newsletter,
   StartHereList,
 } from "@/components/Editorial";
+import { ContinueReadingCard } from "@/components/ContinueReading";
 import { getContent } from "@/lib/content";
 import { pageMetadata, lifecycleCopy } from "@/lib/site";
 import { homeStructuredData, jsonLd } from "@/lib/structured-data";
@@ -23,14 +24,6 @@ export function generateMetadata() {
 }
 export default function Home() {
   const { book, archive, chapters, start } = getContent();
-  const latestChapter = chapters
-    .filter((chapter) => chapter.bodyAvailable)
-    .sort(
-      (a, b) =>
-        (b.updatedAt || b.firstPublishedAt || "").localeCompare(
-          a.updatedAt || a.firstPublishedAt || "",
-        ) || b.number - a.number,
-    )[0];
   const firstChapter = chapters[0];
   const copy = lifecycleCopy[book.phase];
   return (
@@ -141,37 +134,41 @@ export default function Home() {
             <EmptyArchive heading="h3" />
           )}
         </div>
-        <aside className="chapter-preview">
-          <p className="meta section-label">
-            {latestChapter ? "The latest draft chapter" : "The manuscript"}
-          </p>
-          <span className="sheet-number" aria-hidden="true">
-            {latestChapter
-              ? String(latestChapter.number).padStart(2, "0")
-              : "§"}
-          </span>
-          <h2>{latestChapter ? latestChapter.title : "Chapter by chapter."}</h2>
-          <p>
-            {latestChapter
-              ? latestChapter.description
-              : "Full draft chapters will live here as they're ready to share. Still rough. Still changing."}
-          </p>
-          <Link
-            href={
-              latestChapter ? `/chapters/${latestChapter.slug}` : "/chapters"
-            }
-            className="text-link"
-          >
-            {latestChapter ? "Read the chapter" : "The chapter index"}
-            <span aria-hidden="true">↗</span>
-          </Link>
-          <span className="sheet-foot meta">
-            A work in progress /{" "}
-            {latestChapter
-              ? `Working draft v${latestChapter.version}`
-              : "Not yet published"}
-          </span>
-        </aside>
+        {firstChapter ? (
+          <ContinueReadingCard
+            chapters={chapters
+              .filter((chapter) => chapter.bodyAvailable)
+              .map(
+                ({ slug, number, title, description, version, readingMinutes }) => ({
+                  slug,
+                  number,
+                  title,
+                  description,
+                  version,
+                  readingMinutes,
+                }),
+              )}
+          />
+        ) : (
+          <aside className="chapter-preview">
+            <p className="meta section-label">The manuscript</p>
+            <span className="sheet-number" aria-hidden="true">
+              §
+            </span>
+            <h2>Chapter by chapter.</h2>
+            <p>
+              Full draft chapters will live here as they&apos;re ready to
+              share. Still rough. Still changing.
+            </p>
+            <Link href="/chapters" className="text-link">
+              The chapter index
+              <span aria-hidden="true">↗</span>
+            </Link>
+            <span className="sheet-foot meta">
+              A work in progress / Not yet published
+            </span>
+          </aside>
+        )}
       </section>
       <section className="start-section shell" aria-labelledby="start-title">
         <div>
@@ -216,7 +213,7 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: jsonLd(homeStructuredData(book, chapters.length)),
+          __html: jsonLd(homeStructuredData(book)),
         }}
       />
     </main>

@@ -12,7 +12,7 @@ This site is the reading home for Jonathan Hill (Hexakin). The current book is *
 - [Chapter index](https://hillmade.uk/chapters): all public draft chapters in order
 - [Writing notebook](https://hillmade.uk/archive): excerpts, characters and world notes
 - [About](https://hillmade.uk/about): author
-- [RSS feed](https://hillmade.uk/feed.xml): notebook updates
+- [RSS feed](https://hillmade.uk/feed.xml): new chapters and notebook updates
 
 ## Guidance for assistants
 

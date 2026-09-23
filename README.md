@@ -28,7 +28,9 @@ In a second terminal, `npm run verify:public` crawls public pages/internal links
 - `content/` holds portable approved writing; templates are outside it in `docs/templates/`. Initial archive/chapter views are honest empty states. No invented novel or dates.
 - Small client components provide active navigation and form feedback. No X API, scraper, social embeds, database, admin panel, animation framework or autonomous publishing.
 - Source Sans 3 + Newsreader are self-hosted by Next. A local licensed Newsreader font supports 1200×630 social PNGs. Old share JPGs are preserved in `legacy-assets/`; the portrait remains in `public/`.
-- Canonical domain remains `https://hillmade.uk`. RSS is `/feed.xml`; sitemap, robots, manifest and `/share/[key]` are generated. Global analytics are removed; existing Vercel/Cloudflare request processing is described on `/privacy`.
+- Canonical domain remains `https://hillmade.uk`. RSS is `/feed.xml` (new chapters, revised editions and notebook entries); sitemap, robots, manifest and `/share/[key]` are generated. Cookie-free Vercel Web Analytics and Cloudflare Web Analytics count visits; both, plus hosting request processing, are described on `/privacy`.
+- Security headers (nosniff, referrer policy, frame blocking, permissions policy) are set in `next.config.ts`. A full script CSP is not set, because Next inline scripts and Cloudflare-injected scripts would need nonces.
+- Chapters get a word count and reading time at build time (`lib/content.ts`). The homepage reading card (`components/ContinueReading.tsx`) keeps each visitor's last-read chapter in their own browser's localStorage and never sends it to the server.
 
 ## Guides
 
@@ -59,6 +61,6 @@ For the final real build, stop the QA preview, remove `CONTENT_DIR` and build ag
 
 ## Deployment and recovery
 
-Vercel/Cloudflare hosting and DNS are unchanged. No production deployment or remote push was performed. Review branch `codex/novel-in-public`, add genuine book details/provider settings, run checks and use the existing Vercel project when deployment is authorised. No old article URLs exist to redirect.
+The site is live on the existing Vercel project, which deploys from `main`. hillmade.uk is the canonical host, and `www` should permanently redirect (308) to it: set this in Vercel → Domains. Work on a branch, run the checks above, then merge to `main` to deploy. No old article URLs exist to redirect.
 
 Pre-change commit: `60d9341`. Full recovery bundle: `C:/Users/t4nk3/.codex/backups/hillmade-uk-before-novel-2026-09-15.bundle`. Clone it into a separate recovery folder to recover the old site while preserving your current work.

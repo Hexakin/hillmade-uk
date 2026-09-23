@@ -15,7 +15,7 @@ const person = {
   },
 } as const;
 
-export function homeStructuredData(book: Book, chapterCount: number) {
+export function homeStructuredData(book: Book) {
   const graph: Record<string, unknown>[] = [
     {
       "@type": "WebSite",
@@ -42,7 +42,6 @@ export function homeStructuredData(book: Book, chapterCount: number) {
       bookFormat: "https://schema.org/EBook",
       author: { "@id": `${siteUrl}/#author` },
       creativeWorkStatus: book.phase === "released" ? "Published" : "Draft",
-      numberOfPages: chapterCount || undefined,
       isAccessibleForFree: true,
     });
   }
@@ -79,6 +78,9 @@ export function chapterStructuredData(chapter: Chapter, book: Book) {
         }
       : {}),
     version: String(chapter.version),
+    ...(chapter.words
+      ? { wordCount: chapter.words, timeRequired: `PT${chapter.readingMinutes}M` }
+      : {}),
   };
 }
 

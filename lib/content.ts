@@ -159,6 +159,10 @@ export type Chapter = z.infer<typeof chapterSchema> & {
   body: string;
   file: string;
   bodyAvailable: boolean;
+  /** Word count of the public text (0 when withheld). */
+  words: number;
+  /** Estimated reading time in whole minutes at ~230 wpm (0 when withheld). */
+  readingMinutes: number;
 };
 export type Book = z.infer<typeof bookSchema>;
 export type StartItem = z.infer<typeof startSchema>[number] & { href: string };
@@ -276,10 +280,13 @@ export function getContent(root = contentRoot()) {
       const bodyAvailable =
         source.book.fullTextEnabled &&
         ["public", "revised"].includes(item.status);
+      const words = bodyAvailable ? countWords(item.body) : 0;
       return {
         ...item,
         body: bodyAvailable ? item.body : "",
         bodyAvailable,
+        words,
+        readingMinutes: words ? Math.max(1, Math.round(words / 230)) : 0,
         excerpt: source.book.fullTextEnabled ? item.excerpt : undefined,
       };
     })
@@ -311,6 +318,12 @@ export function getContent(root = contentRoot()) {
   return { book: source.book, archive, chapters, pages: source.pages, start };
 }
 
+export function countWords(markdown: string) {
+  const plain = markdown
+    .replace(/<[^>]+>/g, " ")
+    .replace(/[*_#>`~\[\]()|-]+/g, " ");
+  return plain.split(/\s+/).filter((word) => /[\p{L}\p{N}]/u.test(word)).length;
+}
 export function formatDate(value?: string) {
   if (!value) return "";
   return new Intl.DateTimeFormat("en-GB", {

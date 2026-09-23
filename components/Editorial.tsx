@@ -101,6 +101,11 @@ export function ChapterList({ chapters }: { chapters: Chapter[] }) {
             </span>
             <span className="meta chapter-state">
               {chapter.status === "public" ? "Working draft" : chapter.status} · v{chapter.version}
+              {chapter.readingMinutes > 0 && (
+                <span className="chapter-time">
+                  {" "}· {chapter.readingMinutes} min read
+                </span>
+              )}
               <span aria-hidden="true"> ↗</span>
             </span>
           </Link>
