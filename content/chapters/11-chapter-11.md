@@ -3,8 +3,8 @@ id: "wro-chapter-11"
 slug: "chapter-11"
 number: 11
 version: 1
-title: "Chapter 11"
-description: "Chapter 11 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "The Emergency Bag"
+description: "Carol has promised more than she has, and with Arthur asleep downstairs she looks under the bed for a way to keep her word."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

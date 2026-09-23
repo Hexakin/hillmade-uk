@@ -3,8 +3,8 @@ id: "wro-chapter-22"
 slug: "chapter-22"
 number: 22
 version: 1
-title: "Chapter 22"
-description: "Chapter 22 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "Bad News on Paper"
+description: "Saturday breakfast brings squabbling daughters, a pile of unopened post and one envelope that has been waiting weeks to be read."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

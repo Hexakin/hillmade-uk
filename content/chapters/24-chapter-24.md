@@ -3,8 +3,8 @@ id: "wro-chapter-24"
 slug: "chapter-24"
 number: 24
 version: 1
-title: "Chapter 24"
-description: "Chapter 24 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "A Grain of Truth"
+description: "A quiet Saturday of toast and own-brand tea in South-Central is broken open when two sons come knocking."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

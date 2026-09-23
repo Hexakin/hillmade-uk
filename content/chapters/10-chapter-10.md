@@ -3,8 +3,8 @@ id: "wro-chapter-10"
 slug: "chapter-10"
 number: 10
 version: 1
-title: "Chapter 10"
-description: "Chapter 10 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "Boardroom Adam"
+description: "It's the first call home in far too long: a warm greeting, a cheeky favour and a story rehearsed a little too well."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

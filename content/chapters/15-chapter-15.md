@@ -3,8 +3,8 @@ id: "wro-chapter-15"
 slug: "chapter-15"
 number: 15
 version: 1
-title: "Chapter 15"
-description: "Chapter 15 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "A Lovely Photo"
+description: "Adam turns on the charm at Sector C's front desk to fish for answers, and a photograph behind reception leads somewhere he didn't expect."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

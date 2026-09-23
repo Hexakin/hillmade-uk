@@ -3,8 +3,8 @@ id: "wro-chapter-21"
 slug: "chapter-21"
 number: 21
 version: 1
-title: "Chapter 21"
-description: "Chapter 21 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "Something to Tell You"
+description: "Eleanor comes home early to make things right with Adam, bringing a confession of her own, but the morning has other plans for them both."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

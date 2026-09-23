@@ -3,8 +3,8 @@ id: "wro-chapter-09"
 slug: "chapter-09"
 number: 9
 version: 1
-title: "Chapter 9"
-description: "Chapter 9 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "Your Potential, Optimised"
+description: "Waking on the kitchen floor with every account locked and a Friday deadline looming, Adam brushes off CILLA's advice and thinks of someone else to call."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

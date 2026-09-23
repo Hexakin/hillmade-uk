@@ -3,8 +3,8 @@ id: "wro-chapter-07"
 slug: "chapter-07"
 number: 7
 version: 1
-title: "Chapter 7"
-description: "Chapter 7 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "Removed from Contacts"
+description: "Adam reaches out to the brothers he has neglected and finds out how far out of date his contacts have become."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

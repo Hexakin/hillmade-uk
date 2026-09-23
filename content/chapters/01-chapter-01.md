@@ -3,8 +3,8 @@ id: "wro-chapter-01"
 slug: "chapter-01"
 number: 1
 version: 1
-title: "Chapter 1"
-description: "Chapter 1 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "Seamless"
+description: "A sweltering evening run ends in a cracked phone, a frozen account and a house Adam would rather not go home to."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

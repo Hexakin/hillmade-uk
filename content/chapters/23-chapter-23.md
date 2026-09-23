@@ -3,8 +3,8 @@ id: "wro-chapter-23"
 slug: "chapter-23"
 number: 23
 version: 1
-title: "Chapter 23"
-description: "Chapter 23 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "Across Two Bays"
+description: "Daniel pulls up at Leo's flat in a hurry, and one phone call home turns everything Leo believed upside down."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

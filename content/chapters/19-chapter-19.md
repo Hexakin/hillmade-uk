@@ -3,8 +3,8 @@ id: "wro-chapter-19"
 slug: "chapter-19"
 number: 19
 version: 1
-title: "Chapter 19"
-description: "Chapter 19 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "Bagels at Eight"
+description: "The board is waiting upstairs, but first Adam must sit through an eight o'clock breakfast he would give anything to miss."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

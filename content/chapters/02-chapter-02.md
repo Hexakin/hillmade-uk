@@ -3,8 +3,8 @@ id: "wro-chapter-02"
 slug: "chapter-02"
 number: 2
 version: 1
-title: "Chapter 2"
-description: "Chapter 2 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "The Mirror"
+description: "One bathroom mirror, two ambitious careers and a consultant nobody booked: the Ashworths' morning curdles fast."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

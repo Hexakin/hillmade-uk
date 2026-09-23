@@ -3,8 +3,8 @@ id: "wro-chapter-18"
 slug: "chapter-18"
 number: 18
 version: 1
-title: "Chapter 18"
-description: "Chapter 18 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "The Tea Bags"
+description: "A rare visit from the middle son brings laughter, hard news about Arthur's health and a whispered goodbye at the door."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

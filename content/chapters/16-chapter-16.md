@@ -3,8 +3,8 @@ id: "wro-chapter-16"
 slug: "chapter-16"
 number: 16
 version: 1
-title: "Chapter 16"
-description: "Chapter 16 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "The Tram West"
+description: "From The Cliffs to the leafy west, a twenty-minute tram ride carries Leo through every layer of the city's history, and its silences."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

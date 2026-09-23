@@ -3,8 +3,8 @@ id: "wro-chapter-14"
 slug: "chapter-14"
 number: 14
 version: 1
-title: "Chapter 14"
-description: "Chapter 14 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "Everyone's Secretary"
+description: "Back at his desk, Daniel weighs a brother's plea while his inbox fills with rejections, rumours and a message from a name he hasn't seen in a while."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

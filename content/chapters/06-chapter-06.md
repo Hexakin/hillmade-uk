@@ -3,8 +3,8 @@ id: "wro-chapter-06"
 slug: "chapter-06"
 number: 6
 version: 1
-title: "Chapter 6"
-description: "Chapter 6 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "Eighteen Years"
+description: "An old mentor noticed something in the boardroom, and a friendly chat becomes harder to survive than the meeting."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

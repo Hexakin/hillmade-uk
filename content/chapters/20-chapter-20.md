@@ -3,8 +3,8 @@ id: "wro-chapter-20"
 slug: "chapter-20"
 number: 20
 version: 1
-title: "Chapter 20"
-description: "Chapter 20 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "The Long Side of the Desk"
+description: "Summoned to The Pinnacle, Adam faces a row of directors, a list of careful questions and allegations he never saw coming."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

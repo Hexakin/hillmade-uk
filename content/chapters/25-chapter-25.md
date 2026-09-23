@@ -3,8 +3,8 @@ id: "wro-chapter-25"
 slug: "chapter-25"
 number: 25
 version: 1
-title: "Chapter 25"
-description: "Chapter 25 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "Morning, Sleepyhead"
+description: "For one Saturday morning the Ashworths eat breakfast together at last, until CILLA announces a car on the driveway."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

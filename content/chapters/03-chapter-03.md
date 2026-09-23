@@ -3,8 +3,8 @@ id: "wro-chapter-03"
 slug: "chapter-03"
 number: 3
 version: 1
-title: "Chapter 3"
-description: "Chapter 3 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "Privacy Glass"
+description: "Behind the privacy glass, Adam's temper boils over as the car crosses a city of drones and holograms towards someone who got there first."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

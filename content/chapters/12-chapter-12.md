@@ -3,8 +3,8 @@ id: "wro-chapter-12"
 slug: "chapter-12"
 number: 12
 version: 1
-title: "Chapter 12"
-description: "Chapter 12 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "Never Bite the Hand"
+description: "A mother hammers on her youngest son's door with a favour, a story and a deadline, and Leo can't find the words to refuse."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

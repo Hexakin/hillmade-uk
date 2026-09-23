@@ -3,8 +3,8 @@ id: "wro-chapter-08"
 slug: "chapter-08"
 number: 8
 version: 1
-title: "Chapter 8"
-description: "Chapter 8 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "The Ninth of August"
+description: "Rain, empty wine bottles and a boy on the doorstep demanding payment, and then CILLA finds something in the logs."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

@@ -3,8 +3,8 @@ id: "wro-chapter-13"
 slug: "chapter-13"
 number: 13
 version: 1
-title: "Chapter 13"
-description: "Chapter 13 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "Broski"
+description: "Among the crumbling blocks of The Cliffs, a screwed-up letter sends Leo to the big brother he has always looked up to."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

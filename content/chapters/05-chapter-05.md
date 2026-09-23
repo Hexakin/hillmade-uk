@@ -3,8 +3,8 @@ id: "wro-chapter-05"
 slug: "chapter-05"
 number: 5
 version: 1
-title: "Chapter 5"
-description: "Chapter 5 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "No Privacy Up Here"
+description: "High above Alderbourne, in a boardroom made of glass, Adam gives the performance of his career, almost."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

@@ -3,8 +3,8 @@ id: "wro-chapter-17"
 slug: "chapter-17"
 number: 17
 version: 1
-title: "Chapter 17"
-description: "Chapter 17 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "Between Two Roses"
+description: "School blazers, a rock playlist and a quiet exchange in the living room: teatime at Daniel's, with one thing kept from Clara."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"

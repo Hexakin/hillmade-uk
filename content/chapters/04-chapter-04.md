@@ -3,8 +3,8 @@ id: "wro-chapter-04"
 slug: "chapter-04"
 number: 4
 version: 1
-title: "Chapter 4"
-description: "Chapter 4 of We Ruined Ourselves. A working draft; read the chapters in order."
+title: "Page Five"
+description: "Someone is sitting in Adam's chair, and he has brought a folio of papers and a very specific price."
 status: "public"
 published: true
 firstPublishedAt: "2026-09-16"
