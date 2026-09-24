@@ -7,6 +7,8 @@ import {
   StartHereList,
 } from "@/components/Editorial";
 import { ContinueReadingCard } from "@/components/ContinueReading";
+import { FilmFeature } from "@/components/Film";
+import { homecoming } from "@/lib/films";
 import { getContent } from "@/lib/content";
 import { pageMetadata, lifecycleCopy } from "@/lib/site";
 import { homeStructuredData, jsonLd } from "@/lib/structured-data";
@@ -117,6 +119,7 @@ export default function Home() {
         </p>
         <span className="meta">Drafts change. The record stays.</span>
       </div>
+      <FilmFeature film={homecoming} />
       <section className="writing-desk shell" aria-labelledby="desk-title">
         <div className="desk-main">
           <div className="section-heading">
