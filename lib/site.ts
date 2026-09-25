@@ -5,6 +5,8 @@ export const siteUrl = "https://hillmade.uk";
 export const siteName = "Jonathan Hill · A novel in public";
 export const xProfile = "https://x.com/hexakin";
 export const contactEmail = "jonathan.hill@hillmade.uk";
+// Set to the Patreon page URL to show "Back the writing" on the home page.
+export const patreonUrl: string | null = null;
 export const lifecycleCopy = {
   writing: {
     lines: ["I'm writing", "a novel."],

@@ -3,7 +3,6 @@ import {
   formatDate,
   type ArchiveEntry,
   type Chapter,
-  type Book,
   type StartItem,
 } from "@/lib/content";
 import { renderMarkdown } from "@/lib/markdown";
@@ -114,74 +113,6 @@ export function ChapterList({ chapters }: { chapters: Chapter[] }) {
     </ol>
   );
 }
-export function BookStatus({
-  book,
-  chapterCount = 0,
-  firstChapterHref,
-}: {
-  book: Book;
-  chapterCount?: number;
-  firstChapterHref?: string;
-}) {
-  return (
-    <aside className="book-status">
-      <p className="meta section-label">
-        <span className="red-dot" />
-        The current book
-      </p>
-      <h2>{book.workingTitle || "Working title"}</h2>
-      <p className="book-premise">
-        {book.premise ||
-          "Premise coming soon. For now, a blank page and the work ahead."}
-      </p>
-      <dl>
-        <div>
-          <dt>Status</dt>
-          <dd>{book.status}</dd>
-        </div>
-        <div>
-          <dt>Manuscript</dt>
-          <dd>
-            {book.phase === "writing"
-              ? "In progress"
-              : book.phase === "editing"
-                ? "In revision"
-                : book.phase === "released"
-                  ? "Released"
-                  : "Preparing for publication"}
-          </dd>
-        </div>
-        {chapterCount > 0 && (
-          <div>
-            <dt>Chapters</dt>
-            <dd>{chapterCount} public</dd>
-          </div>
-        )}
-        {book.startedAt && (
-          <div>
-            <dt>Began</dt>
-            <dd>{formatDate(book.startedAt)}</dd>
-          </div>
-        )}
-        {book.wordCount !== null && (
-          <div>
-            <dt>Words</dt>
-            <dd>{book.wordCount.toLocaleString("en-GB")}</dd>
-          </div>
-        )}
-      </dl>
-      {firstChapterHref ? (
-        <Link href={firstChapterHref} className="text-link book-status-link">
-          Begin with Chapter One <span aria-hidden="true">↗</span>
-        </Link>
-      ) : (
-        <p className="margin-note">
-          Nothing is set in ink.<span aria-hidden="true"> ↙</span>
-        </p>
-      )}
-    </aside>
-  );
-}
 export function StartHereList({ items }: { items: StartItem[] }) {
   return (
     <ol className="start-list">
@@ -198,25 +129,22 @@ export function StartHereList({ items }: { items: StartItem[] }) {
     </ol>
   );
 }
-export function Newsletter() {
+export function Newsletter({
+  variant = "section",
+}: {
+  variant?: "section" | "strip";
+} = {}) {
   return (
     <section
       id="newsletter"
-      className="newsletter shell"
+      className={`newsletter newsletter-${variant}`}
       aria-labelledby="newsletter-title"
     >
       <div>
-        <p className="meta section-label">
-          A letter, when there&apos;s something to tell
-        </p>
-        <h2 id="newsletter-title">
-          Want to know how
-          <br />
-          the book is going?
-        </h2>
+        <h2 id="newsletter-title">Read each chapter the day it lands.</h2>
         <p>
-          New chapters, important changes, and eventually the finished book. A
-          quiet way to keep your place.
+          New chapters and notes from the notebook, by email. Free, and you can
+          unsubscribe any time.
         </p>
       </div>
       <NewsletterForm {...newsletterState()} />

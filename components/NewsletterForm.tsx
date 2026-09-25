@@ -48,8 +48,8 @@ export function NewsletterForm({
       onSubmit={submit}
       aria-describedby={`${id}-note`}
     >
-      <label className="meta" htmlFor={`${id}-email`}>
-        Your email address
+      <label className="newsletter-label" htmlFor={`${id}-email`}>
+        Email address
       </label>
       <div className="email-row">
         <input
@@ -63,8 +63,7 @@ export function NewsletterForm({
           disabled={state === "pending"}
         />
         <button type="submit" disabled={state === "pending"}>
-          {state === "pending" ? "Sending…" : "Let me know"}
-          <span aria-hidden="true">↗</span>
+          {state === "pending" ? "Sending…" : "Subscribe"}
         </button>
       </div>
       <div className="honeypot" aria-hidden="true">

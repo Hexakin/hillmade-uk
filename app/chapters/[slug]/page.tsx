@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Newsletter, Prose } from "@/components/Editorial";
+import { Prose } from "@/components/Editorial";
+import { NewsletterForm } from "@/components/NewsletterForm";
+import { newsletterState } from "@/lib/newsletter";
 import { formatDate, getContent } from "@/lib/content";
 import { pageMetadata } from "@/lib/site";
 import { chapterStructuredData, jsonLd } from "@/lib/structured-data";
@@ -128,32 +130,50 @@ export default async function ChapterPage({
             . External availability may differ from this archive.
           </p>
         )}
-        <nav className="chapter-pagination" aria-label="Chapter reading order">
-          {previous ? (
-            <Link
-              href={`/chapters/${previous.slug}`}
-              className="text-link"
-            >
-              ← Chapter {previous.number}
-            </Link>
-          ) : (
-            <span />
-          )}
-          {next ? (
-            <Link
-              href={`/chapters/${next.slug}`}
-              className="button-paper chapter-continue"
-            >
-              Continue to Chapter {next.number}{" "}
-              <span aria-hidden="true">→</span>
-            </Link>
-          ) : (
-            <Link href="/#newsletter" className="button-paper chapter-continue">
-              Follow the next chapters <span aria-hidden="true">↗</span>
-            </Link>
-          )}
-        </nav>
       </div>
+      <section
+        id="newsletter"
+        className="chapter-end"
+        aria-label="After this chapter"
+      >
+        {next ? (
+          <Link href={`/chapters/${next.slug}`} className="chapter-end-next">
+            <span className="kicker">Next chapter</span>
+            <span className="chapter-end-title">
+              {next.number} · {next.title}
+            </span>
+            <span className="chapter-end-cta">
+              Read on <span aria-hidden="true">→</span>
+            </span>
+          </Link>
+        ) : (
+          <div className="chapter-end-next">
+            <span className="kicker">You&apos;re up to date</span>
+            <span className="chapter-end-title">
+              {book.phase === "writing"
+                ? `Chapter ${chapter.number + 1} is being written.`
+                : "That's the latest chapter."}
+            </span>
+          </div>
+        )}
+        <div className="chapter-end-signup">
+          <h2>{next ? "New chapters by email." : "Get it the day it lands."}</h2>
+          <p>
+            Free, sent when a chapter is ready. Unsubscribe any time.
+          </p>
+          <NewsletterForm {...newsletterState()} />
+        </div>
+      </section>
+      <nav className="chapter-end-links" aria-label="Chapter reading order">
+        {previous ? (
+          <Link href={`/chapters/${previous.slug}`}>
+            ← Chapter {previous.number}: {previous.title}
+          </Link>
+        ) : (
+          <span />
+        )}
+        <Link href="/chapters">All chapters</Link>
+      </nav>
       {chapter.bodyAvailable && (
         <RememberChapter
           chapter={{
@@ -164,7 +184,6 @@ export default async function ChapterPage({
           }}
         />
       )}
-      <Newsletter />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

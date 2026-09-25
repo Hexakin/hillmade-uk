@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Newsreader, Source_Sans_3 } from "next/font/google";
+import { Cormorant_Garamond, Newsreader, Source_Sans_3 } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
 import { getContent, localPreview } from "@/lib/content";
 import { siteUrl, siteName } from "@/lib/site";
@@ -15,6 +15,14 @@ const sans = Source_Sans_3({
 const serif = Newsreader({
   subsets: ["latin"],
   variable: "--font-newsreader",
+  display: "swap",
+});
+// Display face for headings: the same typeface as the words in the films.
+const display = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
   display: "swap",
 });
 
@@ -55,29 +63,35 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-GB" className={`${sans.variable} ${serif.variable}`}>
+    <html lang="en-GB" className={`${sans.variable} ${serif.variable} ${display.variable}`}>
       <body>
         <a className="skip-link" href="#main">
           Skip to content
         </a>
         <SiteHeader />
         {children}
-        <footer className="site-footer shell">
-          <p>
-            Jonathan Hill <span aria-hidden="true">/</span> A novel in public
-          </p>
-          <nav aria-label="Footer">
-            <Link href="/start">Start here</Link>
-            <Link href="/chapters">Chapters</Link>
-            <a href="https://x.com/hexakin">
-              X / @hexakin <span aria-hidden="true">↗</span>
-            </a>
-            <a href="/feed.xml">RSS</a>
+        <footer className="site-footer">
+          <div className="site-footer-main">
+            <div>
+              <p className="site-footer-name">Jonathan Hill</p>
+              <p>A novel, written in public. Written in Stockport.</p>
+            </div>
+            <nav aria-label="Footer">
+              <Link href="/start">Start here</Link>
+              <Link href="/chapters">Chapters</Link>
+              <Link href="/archive">Notebook</Link>
+              <Link href="/about">About</Link>
+              <Link href="/#newsletter">Newsletter</Link>
+              <a href="https://x.com/hexakin">X / @hexakin</a>
+              <a href="/feed.xml">RSS</a>
+              <Link href="/privacy">Privacy</Link>
+              <a href="mailto:jonathan.hill@hillmade.uk">Get in touch</a>
+            </nav>
+          </div>
+          <p className="site-footer-small">
+            © {new Date().getFullYear()} Jonathan Hill ·{" "}
             <a href="/llms.txt">llms.txt</a>
-            <Link href="/privacy">Privacy</Link>
-            <a href="mailto:jonathan.hill@hillmade.uk">Get in touch</a>
-          </nav>
-          <p className="footer-note">Written in Stockport. Kept here.</p>
+          </p>
         </footer>
         <Analytics />
       </body>

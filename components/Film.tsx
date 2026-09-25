@@ -18,23 +18,13 @@ export type Film = {
 
 export function FilmFeature({ film }: { film: Film }) {
   return (
-    <section className="film-section shell" aria-labelledby="film-title">
-      <div className="film-copy">
-        <p className="meta section-label">{film.label}</p>
-        <h2 id="film-title">{film.title}</h2>
-        <p>{film.lede}</p>
-        <p className="film-making">{film.making}</p>
-        <Link href={film.readHref} className="text-link">
-          {film.readLabel} <span aria-hidden="true">↗</span>
-        </Link>
-        <details className="film-words">
-          <summary>The words in the film</summary>
-          <ol>
-            {film.lines.map((line) => (
-              <li key={line}>{line}</li>
-            ))}
-          </ol>
-        </details>
+    <section id="film" className="film-section" aria-labelledby="film-title">
+      <div className="film-head">
+        <div>
+          <p className="kicker">{film.label}</p>
+          <h2 id="film-title">{film.title}</h2>
+        </div>
+        <p className="film-lede">{film.lede}</p>
       </div>
       <div className="film-frame">
         <video
@@ -57,6 +47,20 @@ export function FilmFeature({ film }: { film: Film }) {
         >
           <source src={`${film.base}-9x16.mp4`} type="video/mp4" />
         </video>
+      </div>
+      <div className="film-foot">
+        <p className="film-making">{film.making}</p>
+        <Link href={film.readHref} className="text-link">
+          {film.readLabel} <span aria-hidden="true">→</span>
+        </Link>
+        <details className="film-words">
+          <summary>The words in the film</summary>
+          <ol>
+            {film.lines.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ol>
+        </details>
       </div>
     </section>
   );
