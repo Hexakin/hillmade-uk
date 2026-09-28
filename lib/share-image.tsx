@@ -4,7 +4,11 @@ import { ImageResponse } from "next/og";
 import { contentRoot, formatDate, getContent } from "./content";
 import { lifecycleCopy } from "./site";
 const staticPages: Record<string, { title: string; detail: string }> = {
-  home: { title: "I'm writing a novel.", detail: "You can watch me do it." },
+  home: {
+    title: "Jonathan Hill makes things.",
+    detail: "A novel / Music / Games / Life with AI",
+  },
+  novel: { title: "I'm writing a novel.", detail: "You can watch me do it." },
   start: {
     title: "Every book starts somewhere.",
     detail: "Start here / A reader's way in",
@@ -37,7 +41,7 @@ export function shareKeys(root = contentRoot()) {
 export function shareImage(key: string, root = contentRoot()) {
   const { archive, chapters, book } = getContent(root);
   let item = Object.hasOwn(staticPages, key) ? staticPages[key] : undefined;
-  if (key === "home")
+  if (key === "novel")
     item = {
       title: book.workingTitle || lifecycleCopy[book.phase].lines.join(" "),
       detail: book.status,

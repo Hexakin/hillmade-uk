@@ -105,7 +105,7 @@ Edit `content/pages/start-here.json`. Array order controls the reading path. Bot
 { "label": "Your actual entry title", "note": "Why begin with this?", "kind": "archive", "target": "the-archive-id" }
 ```
 
-`kind` is `page`, `archive` or `chapter`. For archive/chapter, `target` is the stable ID of an existing public record. Page targets are `/start`, `/archive`, `/archive?order=oldest`, `/chapters`, `/about` or `/#newsletter`. Broken/unpublished destinations stop the build.
+`kind` is `page`, `archive` or `chapter`. For archive/chapter, `target` is the stable ID of an existing public record. Page targets are `/start`, `/archive`, `/archive?order=oldest`, `/chapters`, `/about` or `/novel#newsletter`. Broken/unpublished destinations stop the build.
 
 ## Book configuration and lifecycle
 

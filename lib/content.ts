@@ -254,7 +254,7 @@ export function readSources(root = contentRoot()) {
     "/archive?order=oldest",
     "/chapters",
     "/about",
-    "/#newsletter",
+    "/novel#newsletter",
   ];
   for (const item of start) {
     const exists =

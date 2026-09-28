@@ -127,7 +127,7 @@ export function ContinueReadingCard({ chapters }: { chapters: CardChapter[] }) {
           : chapter.description}
       </p>
       <Link
-        href={mode === "caught-up" ? "/#newsletter" : `/chapters/${chapter.slug}`}
+        href={mode === "caught-up" ? "/novel#newsletter" : `/chapters/${chapter.slug}`}
         className="text-link"
       >
         {cta}

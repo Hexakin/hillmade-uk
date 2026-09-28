@@ -13,7 +13,7 @@ test("reader surfaces contain finished copy, not hosting or approval instruction
     const content = getContent();
     for (const value of [content.book, content.pages, content.start, ...content.archive, ...content.chapters])
       assert.doesNotMatch(JSON.stringify(value), operatorCopy);
-    for (const file of ["app/layout.tsx", "app/page.tsx", "app/chapters/[slug]/page.tsx", "components/Editorial.tsx", "lib/share-image.tsx"])
+    for (const file of ["app/layout.tsx", "app/(novel)/novel/page.tsx", "app/(novel)/chapters/[slug]/page.tsx", "components/Editorial.tsx", "lib/share-image.tsx"])
       assert.doesNotMatch(fs.readFileSync(file, "utf8"), operatorCopy, file);
   } finally {
     if (prior === undefined) delete process.env.LOCAL_CONTENT_PREVIEW;

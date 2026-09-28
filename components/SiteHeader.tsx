@@ -11,7 +11,7 @@ export function SiteHeader() {
   ];
   return (
     <header className="site-header">
-      <Link href="/" className="wordmark" aria-label="Jonathan Hill — home">
+      <Link href="/novel" className="wordmark" aria-label="Jonathan Hill — the novel">
         Jonathan Hill
       </Link>
       <nav aria-label="Main navigation">
@@ -29,7 +29,7 @@ export function SiteHeader() {
           </Link>
         ))}
       </nav>
-      <Link className="subscribe-link" href="/#newsletter">
+      <Link className="subscribe-link" href="/novel#newsletter">
         Subscribe
       </Link>
     </header>

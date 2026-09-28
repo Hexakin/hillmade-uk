@@ -15,6 +15,7 @@ async function main() {
   const { archive, chapters, book } = getContent();
   const pages = [
     "/",
+    "/novel",
     "/start",
     "/archive",
     "/chapters",

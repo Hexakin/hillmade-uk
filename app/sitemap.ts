@@ -6,6 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const { archive, chapters } = getContent();
   const pages: MetadataRoute.Sitemap = [
     { url: absoluteUrl("/"), priority: 1, changeFrequency: "weekly" },
+    { url: absoluteUrl("/novel"), priority: 1, changeFrequency: "weekly" },
     { url: absoluteUrl("/start"), priority: 0.9, changeFrequency: "monthly" },
     {
       url: absoluteUrl("/chapters"),
