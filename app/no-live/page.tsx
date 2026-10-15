@@ -281,6 +281,11 @@ export default function NoLivePage() {
               It does not cover other sites or services, such as BBC iPlayer or
               ITVX.
             </li>
+            <li>
+              It is not a lock. It stops live TV on YouTube by accident or by
+              habit, but anyone who wants to get round it can: remove it, use
+              another browser, or use the app.
+            </li>
           </ul>
         </section>
 
