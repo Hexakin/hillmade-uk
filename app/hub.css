@@ -111,6 +111,68 @@
   transition: color 0.7s var(--ease);
 }
 
+/* New release strip (No Live): black and broadcast red, like its own page. */
+.hub .hub-new {
+  display: flex;
+  align-items: center;
+  gap: 18px 22px;
+  margin: 0 clamp(8px, 1.4vw, 20px) 10px;
+  padding: 16px clamp(16px, 2.4vw, 28px);
+  border: 1px solid #3a1418;
+  border-left: 4px solid var(--hex-red);
+  border-radius: 4px;
+  background: linear-gradient(90deg, #1a0b0d, #0f0e10 60%);
+  color: var(--hex-bone);
+  text-decoration: none;
+  transition:
+    border-color 0.3s var(--ease),
+    transform 0.3s var(--ease);
+}
+.hub .hub-new:hover,
+.hub .hub-new:focus-visible {
+  border-color: var(--hex-red);
+  transform: translateY(-1px);
+}
+.hub-new-icon {
+  flex: none;
+  width: 56px;
+  height: 56px;
+}
+.hub-new-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.hub-new-kicker {
+  color: var(--hex-red);
+  font-family: var(--font-space-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.hub-new-title {
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.hub-new-line {
+  color: #c9c4ba;
+  font-size: 0.98rem;
+}
+.hub-new-go {
+  flex: none;
+  padding: 10px 16px;
+  border-radius: 3px;
+  background: var(--hex-red);
+  color: #fff;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
 /* The doors ---------------------------------------------------------------- */
 .doors {
   display: flex;
@@ -727,6 +789,21 @@
 /* Phones and narrow screens: the doors stack, each nearly a screen tall, with
    everything showing. The novel's line writes itself on arrival. ------------ */
 @media (max-width: 899px) {
+  .hub .hub-new {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .hub-new-icon {
+    width: 44px;
+    height: 44px;
+  }
+  .hub-new-copy {
+    flex-basis: calc(100% - 66px);
+  }
+  .hub-new-go {
+    width: 100%;
+    text-align: center;
+  }
   .doors {
     flex-direction: column;
     gap: 8px;
