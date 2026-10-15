@@ -196,13 +196,8 @@ export default function Hub() {
             </div>
           </li>
 
-          <li className="door door-forge">
+          <li className="door door-games">
             <div className="door-art" aria-hidden="true" />
-            <div className="forge-embers" aria-hidden="true">
-              {Array.from({ length: 16 }, (_, i) => (
-                <span key={i} style={wordStyle(i)} />
-              ))}
-            </div>
             <div className="door-body">
               <p className="door-index">04 / Games</p>
               <h2 className="door-title">
@@ -214,15 +209,12 @@ export default function Hub() {
               <p className="door-tag">Seething Sheep and more, made with AI.</p>
               <div className="door-reveal">
                 <div>
-                  <div className="door-taste forge-cab">
-                    <p className="forge-now">Now showing</p>
-                    <p className="forge-game">SEETHING SHEEP</p>
-                    <p className="forge-blurb">
+                  <div className="door-taste games-cab">
+                    <p className="games-now">Now showing</p>
+                    <p className="games-game">SEETHING SHEEP</p>
+                    <p className="games-blurb">
                       Catapult furious sheep at the wolves’ forts and win back
                       the meadow. Free in your browser.
-                    </p>
-                    <p className="forge-start" aria-hidden="true">
-                      Press start
                     </p>
                   </div>
                   <p className="door-actions">

@@ -1,8 +1,7 @@
 /* ---------------------------------------------------------------------------
    The hub. A neutral stage with four doors, each dressed as the site behind
    it: the novel (dusk and paper), Hexakin (charcoal and signal red), Life with
-   AI (warm paper and terracotta) and DropForge (forge black and molten
-   orange). Pointing at a door widens it and tints the whole stage its colour.
+   AI (warm paper and terracotta) and Hillmade Games (meadow green and amber). Pointing at a door widens it and tints the whole stage its colour.
 --------------------------------------------------------------------------- */
 .hub {
   --stage: #0d0c0c;
@@ -20,10 +19,11 @@
   --lwai-ink: #23201b;
   --lwai-terra: #c8421f;
   --lwai-butter: #e8d27e;
-  --forge-ground: #0a0908;
-  --forge-ink: #efe6d8;
-  --forge-orange: #e85d04;
-  --forge-muted: #8a837a;
+  --games-ground: #cfe3b4;
+  --games-ink: #2b1d0e;
+  --games-card: #fff6e2;
+  --games-amber: #ffc13b;
+  --games-muted: #7a6a52;
   --beat: 0.3846s; /* 156 bpm */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   display: flex;
@@ -50,9 +50,9 @@
   --stage-muted: #6d655a;
   --stage-accent: var(--lwai-terra);
 }
-.hub:has(.door-forge:is(:hover, :focus-within)) {
+.hub:has(.door-games:is(:hover, :focus-within)) {
   --stage: #070605;
-  --stage-accent: var(--forge-orange);
+  --stage-accent: var(--games-amber);
 }
 
 .hub-top,
@@ -611,146 +611,95 @@
   color: #fffdf8;
 }
 
-/* 04 · DropForge: forge black, molten orange, pixels ------------------------ */
-.door-forge {
-  background: var(--forge-ground);
-  color: var(--forge-ink);
+/* 04 · Hillmade Games: the Meadows, cream card, amber button -------------------- */
+.door-games {
+  background: var(--games-ground);
+  color: var(--games-ink);
 }
-.door-forge .door-art {
+.door-games .door-art {
   background-image:
-    repeating-linear-gradient(
-      180deg,
-      rgb(0 0 0 / 0.22) 0 2px,
-      transparent 2px 4px
-    ),
     linear-gradient(
       180deg,
-      rgb(10 9 8 / 0.3) 0%,
-      rgb(10 9 8 / 0.55) 42%,
-      rgb(10 9 8 / 0.97) 76%
+      rgb(255 245 225 / 0) 0%,
+      rgb(255 245 225 / 0) 55%,
+      rgb(60 42 20 / 0.55) 100%
     ),
-    url("/hub/cinder.jpg");
-  background-position:
-    center,
-    center,
-    58% center;
-  filter: saturate(0.7) brightness(0.75);
+    url("/hub/sheep-meadow.jpg");
+  background-size: cover;
+  background-position: 62% center;
+  filter: saturate(1.05);
 }
-.door-forge:is(:hover, :focus-within) .door-art {
+.door-games:is(:hover, :focus-within) .door-art {
   transform: scale(1.05);
-  filter: saturate(1.05) brightness(0.9);
 }
-.door-forge .door-index {
-  color: var(--forge-orange);
-  font-family: var(--font-pixel), monospace;
-  font-size: 0.55rem;
-  line-height: 1.6;
+.door-games .door-index {
+  color: #fff;
+  font-family: var(--font-source-sans), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-shadow: 0 1px 4px rgb(30 20 5 / 0.7);
 }
-.door-forge .door-title {
-  font-family: var(--font-pixel), monospace;
-  font-size: clamp(0.95rem, 8.4cqi, 2.2rem);
-  font-weight: 400;
-  line-height: 1.3;
-  color: var(--forge-orange);
+.door-games .door-title {
+  font-family: var(--font-newsreader), serif;
+  font-size: clamp(1.6rem, 10cqi, 2.8rem);
+  font-weight: 800;
+  line-height: 1.05;
+  color: #fff;
   text-shadow:
-    3px 3px 0 #5a2200,
-    0 0 18px rgb(232 93 4 / 0.45);
+    2px 2px 0 var(--games-ink),
+    -1px -1px 0 var(--games-ink),
+    1px -1px 0 var(--games-ink),
+    -1px 1px 0 var(--games-ink);
 }
-.door-forge .door-tag {
-  color: #c9c0b3;
-  font-family: var(--font-pixel), monospace;
-  font-size: 0.6rem;
-  line-height: 1.9;
+.door-games .door-tag {
+  color: #fff;
+  font-family: var(--font-source-sans), sans-serif;
+  font-size: 0.95rem;
+  text-shadow: 0 1px 4px rgb(30 20 5 / 0.8);
 }
-.forge-cab {
+.games-cab {
   max-width: 24rem;
   padding: 16px 18px;
-  border: 2px solid var(--forge-orange);
-  background: rgb(10 9 8 / 0.8);
-  box-shadow:
-    4px 4px 0 #5a2200,
-    0 0 32px rgb(232 93 4 / 0.18);
+  border: 3px solid var(--games-ink);
+  border-radius: 14px;
+  background: var(--games-card);
+  color: var(--games-ink);
+  box-shadow: 4px 5px 0 var(--games-ink);
 }
-.forge-cab p {
+.games-cab p {
   margin: 0;
 }
-.forge-now,
-.forge-start {
-  font-family: var(--font-pixel), monospace;
-  font-size: 0.55rem;
-  color: var(--forge-muted);
+.games-now {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: var(--games-muted);
 }
-.forge-game {
-  margin-top: 10px !important;
-  font-family: var(--font-pixel), monospace;
-  font-size: 1.3rem;
-  color: var(--forge-ink);
+.games-game {
+  margin-top: 6px !important;
+  font-family: var(--font-newsreader), serif;
+  font-size: 1.5rem;
+  font-weight: 800;
 }
-.forge-blurb {
-  margin-top: 10px !important;
-  font-size: 0.92rem;
+.games-blurb {
+  margin-top: 8px !important;
+  font-size: 0.95rem;
   line-height: 1.5;
-  color: #c9c0b3;
 }
-.forge-start {
-  margin-top: 14px !important;
-  color: var(--forge-orange);
-  animation: blink 1s steps(1) infinite;
+.door-games .door-go {
+  padding: 0.6em 1.1em;
+  border: 2px solid var(--games-ink);
+  border-radius: 999px;
+  background: var(--games-amber);
+  color: var(--games-ink);
+  font-weight: 700;
 }
-.door-forge .door-go {
-  font-family: var(--font-pixel), monospace;
-  font-size: 0.62rem;
-  font-weight: 400;
-  color: var(--forge-orange);
-  text-transform: uppercase;
-}
-.door-forge .door-aside {
-  font-family: var(--font-pixel), monospace;
-  font-size: 0.55rem;
-  text-transform: uppercase;
-}
-.forge-embers {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-.forge-embers span {
-  position: absolute;
-  bottom: -8px;
-  left: calc(4% + var(--i) * 6%);
-  width: 4px;
-  height: 4px;
-  background: var(--forge-orange);
-  box-shadow: 0 0 6px 1px rgb(255 140 40 / 0.8);
-  opacity: 0;
-  animation: ember calc(3.4s + var(--i) * 0.23s) linear infinite;
-  animation-delay: calc(var(--i) * -0.61s);
-}
-.forge-embers span:nth-child(3n) {
-  width: 3px;
-  height: 3px;
-  background: #ffb347;
-}
-.door-forge:is(:hover, :focus-within) .forge-embers span {
-  animation-duration: calc(1.9s + var(--i) * 0.13s);
-}
-@keyframes ember {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0);
-  }
-  10% {
-    opacity: 1;
-  }
-  70% {
-    opacity: 0.7;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(calc((var(--i) - 8) * 3px), -92vh);
-  }
+.door-games .door-aside {
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 0 1px 4px rgb(30 20 5 / 0.8);
 }
 
 /* Footer --------------------------------------------------------------------- */
@@ -808,8 +757,5 @@
   }
   .hex-bars span:nth-child(4n + 1) {
     transform: scaleY(0.5);
-  }
-  .forge-embers {
-    display: none;
   }
 }
