@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Anton,
@@ -75,6 +76,22 @@ export default function Hub() {
             Pick a door.
           </p>
         </div>
+
+        {/* AI DRAFT (Claude), 16 Oct 2026: launch strip for No Live; Jonathan to approve the wording. */}
+        <Link href="/no-live" className="hub-new" aria-label="New: No Live. Get it free">
+          <Image src="/no-live/icon-128.png" alt="" width={56} height={56} className="hub-new-icon" />
+          <span className="hub-new-copy">
+            <span className="hub-new-kicker">New · free · open source</span>
+            <span className="hub-new-title">No Live</span>
+            <span className="hub-new-line">
+              Stops every live stream on YouTube, live TV like BBC News
+              included. Videos, clips and replays still play.
+            </span>
+          </span>
+          <span className="hub-new-go">
+            Get No Live <span aria-hidden="true">→</span>
+          </span>
+        </Link>
 
         <ul className="doors" id="doors" aria-label="Everything I make">
           <li className="door door-novel">
