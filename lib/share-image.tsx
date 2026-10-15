@@ -3,7 +3,10 @@ import path from "node:path";
 import { ImageResponse } from "next/og";
 import { contentRoot, formatDate, getContent } from "./content";
 import { lifecycleCopy } from "./site";
-const staticPages: Record<string, { title: string; detail: string }> = {
+const staticPages: Record<
+  string,
+  { title: string; detail: string; kicker?: string }
+> = {
   home: {
     title: "Jonathan Hill makes things.",
     detail: "A novel / Music / Games / Life with AI",
@@ -28,6 +31,11 @@ const staticPages: Record<string, { title: string; detail: string }> = {
   privacy: {
     title: "Privacy.",
     detail: "A small site. A small amount of data.",
+  },
+  "no-live": {
+    title: "No Live. Every live stream on YouTube, blocked.",
+    detail: "Free, open source / Live TV included",
+    kicker: "Hillmade / No Live",
   },
 };
 export function shareKeys(root = contentRoot()) {
@@ -94,7 +102,7 @@ export function shareImage(key: string, root = contentRoot()) {
               marginRight: 22,
             }}
           />
-          Jonathan Hill / A novel in public
+          {item.kicker ?? "Jonathan Hill / A novel in public"}
         </div>
         <div
           style={{
