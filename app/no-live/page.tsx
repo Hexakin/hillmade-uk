@@ -34,18 +34,18 @@ const licenceCheck = "https://www.tvlicensing.co.uk/check-if-you-need-one";
 const works = [
   {
     where: "Chrome, Edge and Brave on a computer",
-    status: "Works today",
-    how: "Userscript (Tampermonkey or Violentmonkey), or the add-on zip",
+    status: "Tested",
+    how: "Userscript (Tampermonkey or Violentmonkey), or the add-on zip. Edge is tested end to end; Chrome and Brave not run yet",
   },
   {
     where: "Firefox on a computer",
-    status: "Works today",
-    how: "Userscript (Tampermonkey or Violentmonkey)",
+    status: "Part tested",
+    how: "Userscript (Tampermonkey or Violentmonkey). Passes the checks in Playwright's Firefox build; not yet run in a real Firefox window",
   },
   {
     where: "iPhone and iPad (Safari)",
-    status: "Works today",
-    how: "Userscripts app (free, App Store)",
+    status: "Not tested",
+    how: "Userscripts app (free, App Store). Not yet run on a real iPhone or iPad",
   },
   {
     where: "Chrome, Edge and Firefox stores",
@@ -90,8 +90,8 @@ export default function NoLivePage() {
             <h1 id="nl-title">No Live</h1>
             <p className="nl-lead">
               It stops every live stream on YouTube in your browser.{" "}
-              <strong>Live TV included</strong>, such as BBC News, which has
-              announced it now streams live on YouTube in the UK.
+              <strong>Live TV included</strong>, such as BBC News, which is
+              rolling out a live stream on YouTube.
             </p>
             <p>
               Ordinary videos, clips and replays of ended streams still play.
@@ -155,7 +155,7 @@ export default function NoLivePage() {
               <h3>Install the userscript</h3>
               <p>
                 Works in Chrome, Edge, Brave and Firefox on a computer. It needs
-                Tampermonkey or Violentmonkey, both free.
+                Tampermonkey or Violentmonkey, both free. Edge is the only browser tested end to end so far.
               </p>
               <ol className="nl-steps">
                 <li>
@@ -256,8 +256,7 @@ export default function NoLivePage() {
             </tbody>
           </table>
           <p className="nl-muted">
-            Firefox on a computer and iPhone or iPad haven’t been tested on a
-            real device yet. If one of them breaks, tell us on{" "}
+            Chrome, Brave, Firefox in a real Firefox window, and iPhone or iPad haven’t been tested yet. If one of them breaks, tell us on{" "}
             <a href={`${repo}/issues`}>GitHub</a>.
           </p>
         </section>
@@ -269,7 +268,7 @@ export default function NoLivePage() {
               <strong>It does not decide whether you need a TV licence.</strong>{" "}
               What you watch decides that. Under TV Licensing’s rules you need a
               licence to watch any channel live on any device or service,
-              including YouTube, and to watch anything on BBC iPlayer. Ordinary
+              including YouTube, and to watch anything on BBC iPlayer. On-demand
               YouTube videos and non-broadcast live streams don’t need one.{" "}
               <a href={licenceCheck}>Check on TV Licensing’s site</a>.
             </li>
@@ -291,7 +290,8 @@ export default function NoLivePage() {
               <summary>Does it stop the BBC on YouTube?</summary>
               <p>
                 Yes. It blocks every live stream on YouTube in a browser that
-                has it, BBC News included. It doesn’t stop videos, clips or
+                has it, including live news channels such as BBC News. We haven’t
+                tested the BBC’s own stream yet, so check it yourself. It doesn’t stop videos, clips or
                 replays.
               </p>
             </details>
