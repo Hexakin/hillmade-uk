@@ -394,6 +394,10 @@ main:focus {
   content: "● ";
   color: #3ddc84;
 }
+.nl-table td[data-status="Ready to try"]::before {
+  content: "◐ ";
+  color: #3ddc84;
+}
 .nl-table td[data-status="Coming"]::before {
   content: "○ ";
   color: var(--nl-muted);

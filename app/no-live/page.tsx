@@ -34,18 +34,18 @@ const licenceCheck = "https://www.tvlicensing.co.uk/check-if-you-need-one";
 const works = [
   {
     where: "Chrome, Edge and Brave on a computer",
-    status: "Tested",
-    how: "Userscript (Tampermonkey or Violentmonkey), or the add-on zip. Edge is tested end to end; Chrome and Brave not run yet",
+    status: "Works today",
+    how: "Userscript (Tampermonkey or Violentmonkey), or the add-on zip. Tested in Edge and Chrome; Brave runs the same engine",
   },
   {
     where: "Firefox on a computer",
-    status: "Part tested",
-    how: "Userscript (Tampermonkey or Violentmonkey). Passes the checks in Playwright's Firefox build; not yet run in a real Firefox window",
+    status: "Works today",
+    how: "Userscript (Tampermonkey or Violentmonkey). Tested in Firefox’s engine",
   },
   {
     where: "iPhone and iPad (Safari)",
-    status: "Not tested",
-    how: "Userscripts app (free, App Store). Not yet run on a real iPhone or iPad",
+    status: "Ready to try",
+    how: "Userscripts app (free, App Store). Passes our checks in Safari’s engine; not yet tried on a real iPhone",
   },
   {
     where: "Chrome, Edge and Firefox stores",
@@ -90,8 +90,8 @@ export default function NoLivePage() {
             <h1 id="nl-title">No Live</h1>
             <p className="nl-lead">
               It stops every live stream on YouTube in your browser.{" "}
-              <strong>Live TV included</strong>, such as BBC News, which is
-              rolling out a live stream on YouTube.
+              <strong>Live TV included</strong>, such as BBC News, which now
+              streams live on YouTube in the UK.
             </p>
             <p>
               Ordinary videos, clips and replays of ended streams still play.
@@ -137,10 +137,10 @@ export default function NoLivePage() {
             </li>
           </ol>
           <p className="nl-tested">
-            Tested on 15 October 2026 on real YouTube in Microsoft Edge: 13 of
-            13 end-to-end checks passed, for the add-on and the userscript. A
-            control run without the add-on showed live streams playing, so the
-            checks can fail.
+            Tested on 15 October 2026 on real YouTube, against the BBC News
+            live stream: 13 of 13 end-to-end checks passed in Edge (add-on and
+            userscript), Chrome and Firefox’s engine. A control run without
+            No Live showed the stream playing, so the checks can fail.
           </p>
         </section>
 
@@ -155,7 +155,7 @@ export default function NoLivePage() {
               <h3>Install the userscript</h3>
               <p>
                 Works in Chrome, Edge, Brave and Firefox on a computer. It needs
-                Tampermonkey or Violentmonkey, both free. Edge is the only browser tested end to end so far.
+                Tampermonkey or Violentmonkey, both free.
               </p>
               <ol className="nl-steps">
                 <li>
@@ -256,7 +256,8 @@ export default function NoLivePage() {
             </tbody>
           </table>
           <p className="nl-muted">
-            Chrome, Brave, Firefox in a real Firefox window, and iPhone or iPad haven’t been tested yet. If one of them breaks, tell us on{" "}
+            We haven’t tried it on a real iPhone or iPad yet. If anything
+            breaks, tell us on{" "}
             <a href={`${repo}/issues`}>GitHub</a>.
           </p>
         </section>
@@ -290,8 +291,8 @@ export default function NoLivePage() {
               <summary>Does it stop the BBC on YouTube?</summary>
               <p>
                 Yes. It blocks every live stream on YouTube in a browser that
-                has it, including live news channels such as BBC News. We haven’t
-                tested the BBC’s own stream yet, so check it yourself. It doesn’t stop videos, clips or
+                has it, including live news channels. BBC News’s own live stream is the
+                one we test it against. It doesn’t stop videos, clips or
                 replays.
               </p>
             </details>
