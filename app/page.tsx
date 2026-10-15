@@ -36,7 +36,7 @@ const pixel = Press_Start_2P({
 });
 
 const description =
-  "Jonathan Hill makes things: a novel written in public, genre-fused music as Hexakin, a plain-English guide to living with AI, and games at DropForge.";
+  "Jonathan Hill makes things: a novel written in public, genre-fused music as Hexakin, a plain-English guide to living with AI, and games at Hillmade Games.";
 
 export function generateMetadata() {
   return {
@@ -206,19 +206,20 @@ export default function Hub() {
             <div className="door-body">
               <p className="door-index">04 / Games</p>
               <h2 className="door-title">
-                <a href="https://dropforge.ai" className="door-link">
-                  DropForge
+                {/* AI DRAFT (Claude), 15 Oct 2026: door text updated for the Hillmade Games launch; Jonathan to approve the wording. */}
+                <a href="https://games.hillmade.uk" className="door-link">
+                  Hillmade Games
                 </a>
               </h2>
-              <p className="door-tag">An 18+ arcade for AI web games.</p>
+              <p className="door-tag">Seething Sheep and more, made with AI.</p>
               <div className="door-reveal">
                 <div>
                   <div className="door-taste forge-cab">
                     <p className="forge-now">Now showing</p>
-                    <p className="forge-game">CINDER</p>
+                    <p className="forge-game">SEETHING SHEEP</p>
                     <p className="forge-blurb">
-                      Hold the factory floor. Dodge falling wreckage and fight
-                      an endless stream of hostiles.
+                      Catapult furious sheep at the wolves’ forts and win back
+                      the meadow. Free in your browser.
                     </p>
                     <p className="forge-start" aria-hidden="true">
                       Press start
@@ -226,13 +227,13 @@ export default function Hub() {
                   </div>
                   <p className="door-actions">
                     <span className="door-go">
-                      Enter the arcade <span aria-hidden="true">→</span>
+                      Visit Hillmade Games <span aria-hidden="true">→</span>
                     </span>
                     <a
                       className="door-aside"
-                      href="https://dropforge.ai/games/cinder/"
+                      href="https://games.hillmade.uk/games/seething-sheep/"
                     >
-                      Play Cinder
+                      Play Seething Sheep
                     </a>
                   </p>
                 </div>
@@ -264,7 +265,7 @@ export default function Hub() {
               xProfile,
               "https://hexakin.com",
               "https://lifewithai.co.uk",
-              "https://dropforge.ai",
+              "https://games.hillmade.uk",
             ],
           }),
         }}
