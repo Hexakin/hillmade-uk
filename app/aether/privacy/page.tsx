@@ -1,4 +1,4 @@
-// AI DRAFT (Claude) copy, awaiting Jonathan's approval. Source of truth:
+// Copy drafted by Claude; approved by Jonathan, 17 Oct 2026. Source of truth:
 // 03-LifeWithAI/aether/docs/privacy-policy.md (the Aether app links to this page). Keep them in step.
 import type { Metadata } from "next";
 import Link from "next/link";
