@@ -21,6 +21,9 @@ async function main() {
     "/chapters",
     "/about",
     "/privacy",
+    "/no-live",
+    "/aether",
+    "/aether/privacy",
     ...archive.map((item) => `/archive/${item.slug}`),
     ...chapters.map((item) => `/chapters/${item.slug}`),
   ];
