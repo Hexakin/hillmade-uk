@@ -18,10 +18,10 @@ const fraunces = Fraunces({
   variable: "--font-fraunces",
 });
 
-const version = "1.0.0";
+const version = "1.0.1";
 const apk = `/wandwork/wandwork-${version}.apk`;
 const apkSize = "29.2 MB";
-const apkSha256 = "5c442f35a21cdadf1571332bfff43eefcb2cf2f96f3688e4975af64db03ef513";
+const apkSha256 = "f175e7773a5f549660037228ed9b12da15acfc1ac37728a3f6248b8b8b718aa7";
 const certSha256 = "ced62d2286b5dabf5fffd8eb18b990dbb3419b9cf6b9845b33fa82a1a03d1a2a";
 
 const title = "Wandwork · cast spells at your phone · Hillmade";
@@ -153,6 +153,11 @@ export default function WandworkPage() {
                 on the phone.
               </li>
               <li>Open the file. If Android asks, let your browser install apps.</li>
+              <li>
+                Android may warn that it doesn&rsquo;t recognise the app: Wandwork isn&rsquo;t on Google Play yet, so
+                Play Protect hasn&rsquo;t seen it before. Tap <strong>More details</strong>, then{" "}
+                <strong>Install anyway</strong>.
+              </li>
               <li>Open Wandwork. A grown-up walks through Enchanting, then hands the wand over.</li>
             </ol>
           </section>
