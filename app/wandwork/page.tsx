@@ -1,4 +1,4 @@
-// AI DRAFT (Claude) copy, 17 Oct 2026, awaiting Jonathan's approval. Not linked from the home page yet.
+// Copy drafted by Claude; published at Jonathan's word, 17 Oct 2026.
 // Each release: replace the APK in public/wandwork/, and update the version, size and hashes below.
 import type { Metadata } from "next";
 import Link from "next/link";

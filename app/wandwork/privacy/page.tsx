@@ -1,4 +1,4 @@
-// AI DRAFT (Claude) copy, 17 Oct 2026, awaiting Jonathan's approval. Source of truth:
+// Copy drafted by Claude; published at Jonathan's word, 17 Oct 2026. Source of truth:
 // 03-LifeWithAI/Wandwork/PRIVACY.md (the app's Parent Lock links to this page). Keep them in step.
 import type { Metadata } from "next";
 import Link from "next/link";

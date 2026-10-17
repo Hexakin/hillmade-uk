@@ -24,6 +24,8 @@ async function main() {
     "/no-live",
     "/aether",
     "/aether/privacy",
+    "/wandwork",
+    "/wandwork/privacy",
     ...archive.map((item) => `/archive/${item.slug}`),
     ...chapters.map((item) => `/chapters/${item.slug}`),
   ];
