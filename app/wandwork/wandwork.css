@@ -1,0 +1,244 @@
+/* Wandwork pages: the app's own night sky, gold and parchment. Mobile first. Every class is
+   prefixed ww- so nothing leaks into the site. The orb in the hero twinkles; nothing else moves,
+   and it stays still for anyone who asks for less motion. */
+.ww {
+  --ww-night: #120c26;
+  --ww-dusk: #1d1538;
+  --ww-card: #221a40;
+  --ww-rim: #3a2f63;
+  --ww-ink: #f3e9d2;
+  --ww-muted: #b9b0d6;
+  --ww-gold: #e8c872;
+  --ww-ember: #ff8a65;
+  min-height: 100dvh;
+  background: radial-gradient(120% 70% at 50% 0%, #2a1f52 0%, var(--ww-night) 60%, #0a0716 100%);
+  color: var(--ww-ink);
+  font-family: var(--font-atkinson), system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+.ww *,
+.ww *::before,
+.ww *::after {
+  box-sizing: border-box;
+}
+.ww :is(h1, h2, h3) {
+  font-family: var(--font-fraunces), Georgia, serif;
+  color: var(--ww-gold);
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+}
+.ww a {
+  color: var(--ww-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--ww-gold);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+}
+.ww a:focus-visible {
+  outline: 3px solid var(--ww-gold);
+  outline-offset: 3px;
+}
+.ww .skip-link {
+  position: absolute;
+  left: -999px;
+}
+.ww .skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  background: var(--ww-gold);
+  color: var(--ww-night);
+  padding: 0.5rem 1rem;
+  z-index: 10;
+}
+.ww-top {
+  padding: 1rem 1.25rem;
+}
+.ww-home {
+  font-weight: 700;
+  text-decoration: none;
+}
+.ww main {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 1.25rem 4rem;
+}
+.ww-hero {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  padding: 2rem 0 3rem;
+}
+.ww-wordmark {
+  font-size: clamp(2.75rem, 9vw, 4.5rem);
+}
+.ww-lead {
+  font-size: clamp(1.25rem, 3.6vw, 1.6rem);
+  margin: 0 0 0.75rem;
+}
+.ww-sub {
+  color: var(--ww-muted);
+  margin: 0 0 1.5rem;
+}
+.ww-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  align-items: center;
+  margin: 0;
+}
+.ww-btn {
+  display: inline-block;
+  background: var(--ww-gold);
+  color: var(--ww-night) !important;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+}
+.ww-btn:hover {
+  background: #f2d98f;
+}
+.ww-small {
+  color: var(--ww-muted);
+  font-size: 0.95rem;
+}
+
+/* The orb: the floating wand as it looks on the phone. */
+.ww-orb {
+  position: relative;
+  width: min(16rem, 70vw);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #34286a 0%, #1d1538 55%, #120c26 100%);
+  box-shadow:
+    0 0 0 6px var(--ww-gold),
+    0 0 40px 10px rgba(232, 200, 114, 0.35);
+}
+.ww-orb svg {
+  position: absolute;
+  inset: 18%;
+}
+.ww-spark {
+  position: absolute;
+  width: 0.6rem;
+  aspect-ratio: 1;
+  background: var(--ww-gold);
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+  animation: ww-twinkle 2.4s ease-in-out infinite;
+}
+.ww-spark:nth-child(2) { top: 6%; right: 12%; animation-delay: 0.4s; }
+.ww-spark:nth-child(3) { bottom: 14%; left: 2%; animation-delay: 1.1s; width: 0.45rem; }
+.ww-spark:nth-child(4) { top: 40%; right: -6%; animation-delay: 1.7s; width: 0.5rem; }
+@keyframes ww-twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.7); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ww-spark { animation: none; opacity: 0.8; }
+}
+
+.ww-sections {
+  display: grid;
+  gap: 1.25rem;
+}
+.ww-sections section {
+  background: var(--ww-card);
+  border: 1px solid var(--ww-rim);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+}
+.ww-sections h2 {
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+}
+.ww-sections p {
+  margin: 0 0 0.75rem;
+}
+.ww-sections p:last-child {
+  margin-bottom: 0;
+}
+.ww-spells {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.35rem 1.5rem;
+  margin: 0;
+}
+.ww-spells div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px dashed var(--ww-rim);
+  padding: 0.3rem 0;
+}
+.ww-spells dt {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.ww-spells dt::before {
+  content: "✦ ";
+  color: var(--ww-gold);
+}
+.ww-spells dd {
+  margin: 0;
+  color: var(--ww-muted);
+  text-align: right;
+}
+.ww-list,
+.ww-steps {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+.ww-list {
+  list-style: disc;
+}
+.ww-steps {
+  list-style: decimal;
+}
+.ww-list li::marker,
+.ww-steps li::marker {
+  color: var(--ww-gold);
+  font-weight: 700;
+}
+.ww-list li,
+.ww-steps li {
+  margin-bottom: 0.5rem;
+}
+.ww code {
+  font-size: 0.8rem;
+  overflow-wrap: anywhere;
+  color: var(--ww-ink);
+}
+.ww-policy {
+  max-width: 44rem;
+}
+.ww-policy h2 {
+  margin-top: 1.75rem;
+}
+
+@media (min-width: 48rem) {
+  .ww-hero {
+    grid-template-columns: 1.3fr 1fr;
+    padding: 3.5rem 0 4rem;
+  }
+  .ww-spells {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ww-sections {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ww-sections .ww-wide {
+    grid-column: 1 / -1;
+  }
+}
+.ww-policy {
+  padding-top: 1.5rem;
+}
+.ww-policy h1 {
+  font-size: clamp(2rem, 7vw, 2.75rem);
+}
+.ww-policy p,
+.ww-policy ul {
+  margin: 0 0 1rem;
+}
