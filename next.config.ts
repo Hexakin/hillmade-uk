@@ -16,7 +16,19 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
+    return [
+      { source: "/:path*", headers: securityHeaders },
+      // Aether's APK downloads as an Android app, and its version file is never cached stale,
+      // so the app's Check for updates sees a new release at once.
+      {
+        source: "/aether/:file*.apk",
+        headers: [{ key: "Content-Type", value: "application/vnd.android.package-archive" }],
+      },
+      {
+        source: "/aether/latest.json",
+        headers: [{ key: "Cache-Control", value: "no-cache, max-age=0, must-revalidate" }],
+      },
+    ];
   },
   agentRules: false,
   turbopack: { root: process.cwd() },
