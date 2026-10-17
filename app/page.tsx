@@ -11,6 +11,7 @@ import { getContent } from "@/lib/content";
 import { contactEmail, pageMetadata, siteUrl, xProfile } from "@/lib/site";
 import { jsonLd } from "@/lib/structured-data";
 import { AetherMark } from "./aether/AetherMark";
+import { WandMark } from "./wandwork/WandMark";
 import "./hub.css";
 
 // The hub is the front door for everything Jonathan makes. Each door borrows
@@ -110,6 +111,22 @@ export default function Hub() {
           </span>
         </Link>
 
+        {/* Launch strip for Wandwork, in its own night sky and gold: drafted by Claude, published at Jonathan's word 17 Oct 2026. */}
+        <Link href="/wandwork" className="hub-new hub-new-wandwork" aria-label="New: Wandwork, cast spells at your phone">
+          <WandMark className="hub-new-icon" />
+          <span className="hub-new-copy">
+            <span className="hub-new-kicker">New · for Android</span>
+            <span className="hub-new-title">Wandwork</span>
+            <span className="hub-new-line">
+              Say a spell, flick your phone, and the magic happens. For young
+              witches and wizards, with a Parent Lock.
+            </span>
+          </span>
+          <span className="hub-new-go">
+            Get Wandwork <span aria-hidden="true">→</span>
+          </span>
+        </Link>
+
         <ul className="doors" id="doors" aria-label="Everything I make">
           <li className="door door-novel">
             <div className="door-art" aria-hidden="true" />
@@ -203,7 +220,7 @@ export default function Hub() {
           <li className="door door-lwai">
             <div className="door-art" aria-hidden="true" />
             <p className="lwai-note" aria-hidden="true">
-              6 free lessons<span>+ Aether, out now</span>
+              6 free lessons<span>+ Aether and Wandwork, out now</span>
             </p>
             <div className="door-body">
               <p className="door-index">03 / Life with AI</p>
@@ -217,8 +234,8 @@ export default function Hub() {
                 <div>
                   <p className="door-taste lwai-line">
                     Get <mark>comfortable</mark> with AI in ordinary life. Free
-                    lessons, and Android apps to make everyday jobs easier,
-                    starting with Aether: talk instead of type.
+                    lessons, and Android apps: Aether, to talk instead of type,
+                    and Wandwork, to cast spells at your phone.
                   </p>
                   <p className="door-actions">
                     <span className="door-go">
@@ -226,6 +243,9 @@ export default function Hub() {
                     </span>
                     <Link className="door-aside" href="/aether">
                       Get Aether
+                    </Link>
+                    <Link className="door-aside" href="/wandwork">
+                      Get Wandwork
                     </Link>
                   </p>
                 </div>

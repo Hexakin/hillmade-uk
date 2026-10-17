@@ -195,6 +195,35 @@
   background: #7ee0d0;
   color: #04201c;
 }
+.hub .hub-new-wandwork {
+  border-color: #3a2f63;
+  border-left-color: #e8c872;
+  background: linear-gradient(90deg, #2a1f52, #120c26 60%);
+  color: #f3e9d2;
+  font-family: var(--font-atkinson), system-ui, sans-serif;
+}
+.hub .hub-new-wandwork:hover,
+.hub .hub-new-wandwork:focus-visible {
+  border-color: #e8c872;
+}
+.hub-new-wandwork .hub-new-kicker {
+  color: #e8c872;
+}
+.hub-new-wandwork .hub-new-title {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #e8c872;
+}
+.hub-new-wandwork .hub-new-line {
+  color: #b9b0d6;
+}
+.hub-new-wandwork .hub-new-go {
+  border-radius: 999px;
+  background: #e8c872;
+  color: #120c26;
+}
 .hub-new + .hub-new {
   margin-top: 0;
 }
