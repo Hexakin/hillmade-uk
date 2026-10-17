@@ -10,6 +10,7 @@ import {
 import { getContent } from "@/lib/content";
 import { contactEmail, pageMetadata, siteUrl, xProfile } from "@/lib/site";
 import { jsonLd } from "@/lib/structured-data";
+import { AetherMark } from "./aether/AetherMark";
 import "./hub.css";
 
 // The hub is the front door for everything Jonathan makes. Each door borrows
@@ -90,6 +91,22 @@ export default function Hub() {
           </span>
           <span className="hub-new-go">
             Get No Live <span aria-hidden="true">→</span>
+          </span>
+        </Link>
+
+        {/* AI DRAFT (Claude), 17 Oct 2026: launch strip for Aether, in its own teal; Jonathan to approve the wording. */}
+        <Link href="/aether" className="hub-new hub-new-aether" aria-label="New: Aether, voice dictation for Android">
+          <AetherMark className="hub-new-icon" />
+          <span className="hub-new-copy">
+            <span className="hub-new-kicker">New · for Android</span>
+            <span className="hub-new-title">Aether</span>
+            <span className="hub-new-line">
+              Talk, and clean British English lands in whatever box you&rsquo;re
+              typing in.
+            </span>
+          </span>
+          <span className="hub-new-go">
+            Get Aether <span aria-hidden="true">→</span>
           </span>
         </Link>
 
@@ -186,7 +203,7 @@ export default function Hub() {
           <li className="door door-lwai">
             <div className="door-art" aria-hidden="true" />
             <p className="lwai-note" aria-hidden="true">
-              6 free lessons<span>+ 2 apps on the way</span>
+              6 free lessons<span>+ Aether, out now</span>
             </p>
             <div className="door-body">
               <p className="door-index">03 / Life with AI</p>
@@ -200,13 +217,16 @@ export default function Hub() {
                 <div>
                   <p className="door-taste lwai-line">
                     Get <mark>comfortable</mark> with AI in ordinary life. Free
-                    lessons, and two Android apps I&apos;m building to make
-                    everyday jobs easier.
+                    lessons, and Android apps to make everyday jobs easier,
+                    starting with Aether: talk instead of type.
                   </p>
                   <p className="door-actions">
                     <span className="door-go">
                       Go to lifewithai.co.uk <span aria-hidden="true">→</span>
                     </span>
+                    <Link className="door-aside" href="/aether">
+                      Get Aether
+                    </Link>
                   </p>
                 </div>
               </div>

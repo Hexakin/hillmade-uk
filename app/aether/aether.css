@@ -1,22 +1,32 @@
-/* Aether pages: Aether's own dark teal. Mobile first. Every class is prefixed ae-
-   so nothing leaks into the site. */
+/* Aether pages: the app's own night-teal palette and Atkinson Hyperlegible, the Life with AI
+   face. Mobile first. Every class is prefixed ae- so nothing leaks into the site.
+   The one moving thing is the take demo in the hero; everything else stays still. */
 .ae {
-  --ae-ground: #0b1f2a;
+  --ae-night: #0b1f2a;
   --ae-panel: #122833;
+  --ae-rim: #1f3d4a;
   --ae-ink: #e6f2f0;
   --ae-muted: #b3c5c2;
   --ae-teal: #7ee0d0;
+  --ae-teal-deep: #1a4a4a;
+  --ae-amber: #ffd27a;
+  --ae-red: #ff8a80;
+  --ae-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   min-height: 100dvh;
-  background: var(--ae-ground);
+  background: var(--ae-night);
   color: var(--ae-ink);
-  font-family: var(--font-source-sans), system-ui, sans-serif;
+  font-family: var(--font-atkinson), var(--font-source-sans), system-ui, sans-serif;
   font-size: 1.0625rem;
-  line-height: 1.65;
+  line-height: 1.6;
 }
 .ae *,
 .ae *::before,
 .ae *::after {
   box-sizing: border-box;
+}
+/* The site's global h1/h2 face is the novel's serif; Aether's headings use its own. */
+.ae :is(h1, h2, h3, button) {
+  font-family: var(--font-atkinson), var(--font-source-sans), system-ui, sans-serif;
 }
 .ae a {
   color: var(--ae-ink);
@@ -24,78 +34,475 @@
   text-decoration-thickness: 2px;
   text-underline-offset: 0.2em;
 }
+.ae a:focus-visible,
+.ae button:focus-visible {
+  outline: 3px solid var(--ae-teal);
+  outline-offset: 3px;
+}
 .ae-top {
-  padding: 1rem 1rem 0;
-  max-width: 44rem;
+  max-width: 68rem;
   margin: 0 auto;
+  padding: 1rem 1rem 0;
 }
 .ae-home {
   font-weight: 700;
   text-decoration: none;
 }
+
+/* Hero ------------------------------------------------------------------------------ */
+.ae-hero {
+  display: grid;
+  gap: 2.5rem;
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+@media (min-width: 880px) {
+  .ae-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 27rem);
+    align-items: center;
+    gap: 4rem;
+    padding: 4.5rem 1.5rem 5rem;
+  }
+}
+.ae-wordmark {
+  display: flex;
+  align-items: center;
+  gap: 0.18em;
+  margin: 0 0 1rem;
+  color: var(--ae-ink);
+  font-size: clamp(3.2rem, 11vw, 5.6rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+.ae-wordmark-mark {
+  flex: none;
+  width: 0.92em;
+  height: 0.92em;
+  color: var(--ae-teal);
+}
+.ae-lead {
+  max-width: 22ch;
+  margin: 0 0 1rem;
+  font-size: clamp(1.45rem, 3.6vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  line-height: 1.22;
+}
+.ae-sub {
+  max-width: 34rem;
+  margin: 0 0 1.75rem;
+  color: var(--ae-muted);
+}
+.ae-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin: 0;
+}
+.ae-btn {
+  display: inline-block;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  background: var(--ae-teal);
+  color: #04201c !important;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.2s var(--ae-ease);
+}
+.ae-btn:hover {
+  transform: translateY(-1px);
+}
+.ae-small {
+  color: var(--ae-muted);
+  font-size: 0.95rem;
+}
+
+/* The take demo: a chat box, the bubble docked at its edge, the words as heard ---------- */
+.ae-take {
+  margin: 0;
+}
+.ae-take-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid var(--ae-rim);
+  border-radius: 28px;
+  background: var(--ae-panel);
+}
+.ae-take-thread {
+  display: flex;
+}
+.ae-take-msg {
+  max-width: 80%;
+  margin: 0;
+  padding: 0.6rem 0.95rem;
+  border-radius: 18px 18px 18px 6px;
+  background: var(--ae-rim);
+  color: var(--ae-ink);
+  font-size: 0.98rem;
+}
+/* What the speech model heard: light, slightly unsteady, word by word. */
+.ae-take-heard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1em 0.32em;
+  min-height: 3.4em;
+  align-content: flex-start;
+  color: var(--ae-muted);
+  font-size: 1.15rem;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.45;
+}
+.ae-word {
+  opacity: 0;
+  transform: translateY(0.35em);
+  transition:
+    opacity 0.25s var(--ae-ease),
+    transform 0.35s var(--ae-ease),
+    color 0.5s var(--ae-ease);
+  text-decoration: line-through transparent 2px;
+}
+.ae-word.is-heard {
+  opacity: 1;
+  transform: none;
+}
+.ae-word.is-heard:nth-child(3n + 1) {
+  transform: translateY(-0.03em);
+}
+.ae-word.is-heard:nth-child(3n + 2) {
+  transform: translateY(0.035em);
+}
+/* Tidying: filler and the retracted words are struck out and dimmed, the rest stays. */
+.is-tidy .ae-word.is-filler,
+.is-tidy .ae-word.is-retracted,
+.is-done .ae-word.is-filler,
+.is-done .ae-word.is-retracted {
+  opacity: 0.38;
+  text-decoration-color: var(--ae-teal);
+  transition:
+    opacity 0.6s var(--ae-ease),
+    text-decoration-color 0.4s var(--ae-ease);
+}
+.is-tidy .ae-word:not(.is-filler, .is-retracted),
+.is-done .ae-word:not(.is-filler, .is-retracted) {
+  color: var(--ae-ink);
+}
+
+/* The text box, with the bubble docked on its right edge. */
+.ae-take-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 60px;
+  padding: 0 4.25rem 0 1.1rem;
+  border: 2px solid var(--ae-rim);
+  border-radius: 999px;
+  background: var(--ae-night);
+}
+.is-done .ae-take-field,
+.is-tidy .ae-take-field {
+  border-color: var(--ae-teal-deep);
+}
+.ae-take-text {
+  color: var(--ae-ink);
+  font-size: 1.12rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.ae-caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.15em;
+  margin-left: 2px;
+  vertical-align: -0.18em;
+  background: var(--ae-teal);
+  animation: ae-blink 1.1s steps(1) infinite;
+}
+@keyframes ae-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.ae-bubble {
+  position: absolute;
+  top: 50%;
+  right: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border-radius: 999px;
+  background: var(--ae-night);
+  color: var(--ae-teal);
+  overflow: hidden;
+  transform: translateY(-50%);
+  transition:
+    width 0.45s var(--ae-ease),
+    background-color 0.3s var(--ae-ease);
+}
+.ae-bubble-mark {
+  position: absolute;
+  inset: 0;
+  width: 46px;
+  height: 46px;
+  transition: opacity 0.2s var(--ae-ease);
+}
+.ae-bubble-cancel,
+.ae-bubble-confirm,
+.ae-meter {
+  opacity: 0;
+  transition: opacity 0.2s var(--ae-ease);
+}
+.ae-bubble-cancel,
+.ae-bubble-confirm {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+.ae-bubble-cancel {
+  color: var(--ae-muted);
+}
+.ae-bubble-confirm {
+  border-radius: 999px;
+  color: var(--ae-teal);
+  transition:
+    opacity 0.2s var(--ae-ease),
+    background-color 0.25s var(--ae-ease),
+    color 0.25s var(--ae-ease);
+}
+.ae-meter {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 100%;
+}
+.ae-meter span {
+  width: 4px;
+  height: 6px;
+  border-radius: 2px;
+  background: var(--ae-teal);
+}
+/* Docked right, so the bar reads ✕ · meter · ✓, with ✓ where the circle was. */
+.ae-bubble.is-open,
+.is-confirm .ae-bubble {
+  width: 188px;
+  background: var(--ae-teal-deep);
+}
+.ae-bubble.is-open .ae-bubble-mark,
+.is-confirm .ae-bubble-mark {
+  opacity: 0;
+}
+.ae-bubble.is-open :is(.ae-bubble-cancel, .ae-bubble-confirm, .ae-meter),
+.is-confirm .ae-bubble :is(.ae-bubble-cancel, .ae-bubble-confirm, .ae-meter) {
+  opacity: 1;
+  transition-delay: 0.2s;
+}
+.ae-bubble.is-open .ae-meter span {
+  animation: ae-level 0.62s var(--ae-ease) infinite alternate;
+}
+@keyframes ae-level {
+  from {
+    height: 5px;
+  }
+  to {
+    height: 26px;
+  }
+}
+.is-confirm .ae-bubble-confirm {
+  background: var(--ae-teal);
+  color: #04201c;
+}
+/* Back to the circle, with a nod: it heard you. */
+.is-tidy .ae-bubble {
+  animation: ae-nod 0.6s var(--ae-ease) 0.45s;
+}
+@keyframes ae-nod {
+  30% {
+    transform: translateY(-50%) rotate(-14deg) scale(1.04);
+  }
+  65% {
+    transform: translateY(-50%) rotate(8deg);
+  }
+}
+
+.ae-take-caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  min-height: 2.6rem;
+  margin-top: 0.75rem;
+  padding: 0 0.5rem;
+  color: var(--ae-muted);
+  font-size: 0.92rem;
+}
+.ae-replay {
+  padding: 0.45rem 0.95rem;
+  border: 1px solid var(--ae-rim);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ae-ink);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.ae-replay:hover {
+  border-color: var(--ae-teal);
+}
+
+/* The rest of the page: one quiet column ---------------------------------------------- */
+.ae-sections {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 0 1rem 5rem;
+}
+@media (min-width: 880px) {
+  .ae-sections {
+    padding: 0 1.5rem 6rem;
+  }
+}
+.ae-sections > section {
+  max-width: 42rem;
+  padding: 2.25rem 0 0.5rem;
+  border-top: 1px solid var(--ae-rim);
+}
+/* Wide screens: each heading sits in its own column beside its text. */
+@media (min-width: 880px) {
+  .ae-sections > section {
+    display: grid;
+    grid-template-columns: minmax(0, 17rem) minmax(0, 40rem);
+    gap: 3rem;
+    max-width: none;
+    padding: 2.75rem 0 1rem;
+  }
+  .ae-sections > section > h2 {
+    margin: 0;
+  }
+}
+.ae h2 {
+  margin: 0 0 0.85rem;
+  font-size: clamp(1.45rem, 3vw, 1.85rem);
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+.ae-ways {
+  display: grid;
+  gap: 1.25rem;
+  margin: 0;
+}
+@media (min-width: 640px) {
+  .ae-ways {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+.ae-ways dt {
+  margin-bottom: 0.25rem;
+  color: var(--ae-teal);
+  font-weight: 800;
+}
+.ae-ways dd {
+  margin: 0;
+  color: var(--ae-muted);
+}
+.ae ul,
+.ae ol {
+  margin: 0;
+  padding-left: 1.3rem;
+}
+.ae ul {
+  list-style: disc;
+}
+.ae ol {
+  list-style: decimal;
+}
+.ae li {
+  margin: 0.45rem 0;
+}
+.ae li::marker {
+  color: var(--ae-teal);
+  font-weight: 800;
+}
+.ae-list strong {
+  color: var(--ae-ink);
+}
+.ae-list li {
+  color: var(--ae-muted);
+}
+.ae-kept p {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  margin: 0;
+  color: var(--ae-muted);
+}
+.ae-retry {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  background: var(--ae-amber);
+  color: #3a2a05;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+.ae code {
+  overflow-wrap: anywhere;
+  font-size: 0.85rem;
+}
+
+/* The privacy page --------------------------------------------------------------------- */
 .ae-main {
   max-width: 44rem;
   margin: 0 auto;
   padding: 1.5rem 1rem 4rem;
 }
 .ae-kicker {
-  color: var(--ae-teal);
-  font-weight: 600;
   margin: 0 0 0.25rem;
+  color: var(--ae-teal);
+  font-weight: 700;
 }
-.ae h1 {
-  font-size: clamp(2rem, 6vw, 2.75rem);
-  line-height: 1.1;
+.ae-main h1 {
   margin: 0 0 0.5rem;
+  font-size: clamp(2rem, 6vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 .ae-date {
-  color: var(--ae-muted);
   margin-top: 0;
-}
-.ae h2 {
-  font-size: 1.3rem;
-  margin: 2.25rem 0 0.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--ae-panel);
-}
-.ae ul {
-  list-style: disc;
-  padding-left: 1.25rem;
-}
-.ae li {
-  margin: 0.4rem 0;
-}
-.ae li::marker {
-  color: var(--ae-teal);
-}
-.ae ol {
-  list-style: decimal;
-  padding-left: 1.4rem;
-}
-.ae-lead {
-  font-size: 1.2rem;
-}
-.ae-actions {
-  margin: 1.5rem 0 0.25rem;
-}
-.ae-btn {
-  display: inline-block;
-  padding: 0.8rem 1.4rem;
-  border-radius: 999px;
-  background: var(--ae-teal);
-  color: #04201c !important;
-  font-weight: 700;
-  text-decoration: none;
-}
-.ae-btn:focus-visible {
-  outline: 3px solid var(--ae-ink);
-  outline-offset: 3px;
-}
-.ae-small {
   color: var(--ae-muted);
-  font-size: 0.95rem;
 }
-.ae code {
-  overflow-wrap: anywhere;
-  font-size: 0.85rem;
+.ae-main h2 {
+  margin-top: 2.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--ae-rim);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ae *,
+  .ae *::before,
+  .ae *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }
