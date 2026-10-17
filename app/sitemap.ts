@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl("/novel"), priority: 1, changeFrequency: "weekly" },
     { url: absoluteUrl("/start"), priority: 0.9, changeFrequency: "monthly" },
     { url: absoluteUrl("/no-live"), priority: 0.9, changeFrequency: "monthly" },
+    { url: absoluteUrl("/aether/privacy"), priority: 0.3, changeFrequency: "yearly" },
     {
       url: absoluteUrl("/chapters"),
       priority: 0.9,
