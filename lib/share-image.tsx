@@ -26,7 +26,7 @@ const staticPages: Record<
   },
   about: {
     title: "I'm Jonathan.",
-    detail: "A dad of four. From Stockport. Making a story.",
+    detail: "A dad of four. Making a story.",
   },
   privacy: {
     title: "Privacy.",

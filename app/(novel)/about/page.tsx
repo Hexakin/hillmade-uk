@@ -17,7 +17,7 @@ export default function AboutPage() {
       <header className="page-heading shell">
         <p className="meta">The person at the desk</p>
         <h1>{pages.about.title}</h1>
-        <p>A dad of four. From Stockport. Making a story.</p>
+        <p>A dad of four. Making a story.</p>
       </header>
       <div className="reading-layout about-layout shell">
         <article>

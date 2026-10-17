@@ -9,10 +9,6 @@ const person = {
   email: contactEmail,
   sameAs: [xProfile],
   jobTitle: "Writer",
-  homeLocation: {
-    "@type": "Place",
-    name: "Stockport, England",
-  },
 } as const;
 
 export function homeStructuredData(book: Book) {

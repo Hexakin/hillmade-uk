@@ -296,7 +296,7 @@ export default function Home() {
           <p className="kicker kicker-paper">About</p>
           <h2 id="about-title">{pages.about.title}</h2>
           <p className="home-about-copy">
-            I&apos;m a dad of four from Stockport, writing my first novel.
+            I&apos;m a dad of four, writing my first novel.
             Instead of disappearing for a year and pretending the book arrived
             fully formed, I&apos;m showing the process as I go: the bits that
             work, the bits that don&apos;t, and the decisions that change

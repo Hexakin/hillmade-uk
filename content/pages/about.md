@@ -1,8 +1,8 @@
 ---
 title: I'm Jonathan.
-description: A dad of four from Stockport, writing a novel in public. You'll find me on X as @hexakin.
+description: A dad of four, writing a novel in public. You'll find me on X as @hexakin.
 ---
-I'm a dad of four from Stockport. I'm writing a novel.
+I'm a dad of four. I'm writing a novel.
 
 Instead of disappearing for a year and pretending the book arrived fully formed, I'm showing the process as I go. The bits that work, the bits that don't, and the decisions that change everything.
 

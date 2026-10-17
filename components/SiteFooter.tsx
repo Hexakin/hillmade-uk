@@ -6,7 +6,7 @@ export function SiteFooter() {
       <div className="site-footer-main">
         <div>
           <p className="site-footer-name">Jonathan Hill</p>
-          <p>A novel, written in public. Written in Stockport.</p>
+          <p>A novel, written in public.</p>
         </div>
         <nav aria-label="Footer">
           <Link href="/start">Start here</Link>

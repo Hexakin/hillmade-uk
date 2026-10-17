@@ -15,7 +15,7 @@ export default function PrivacyPage() {
           Privacy<span className="red-period">.</span>
         </h1>
         <p>
-          This is Jonathan Hill&apos;s writing archive, based in Stockport, UK.
+          This is Jonathan Hill&apos;s writing archive, based in the UK.
         </p>
       </header>
       <div className="reading-layout shell">

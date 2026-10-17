@@ -67,7 +67,7 @@ export default function Hub() {
       </a>
       <header className="hub-top">
         <p className="hub-wordmark">Hillmade</p>
-        <p className="hub-where">Jonathan Hill · Stockport</p>
+        <p className="hub-where">Jonathan Hill</p>
       </header>
 
       <main id="main" tabIndex={-1}>
