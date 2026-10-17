@@ -15,9 +15,9 @@ const atkinson = Atkinson_Hyperlegible_Next({
   variable: "--font-atkinson",
 });
 
-const version = "1.0.0";
+const version = "1.0.1";
 const apk = `/aether/aether-${version}.apk`;
-const apkSha256 = "42873719dd072ec3e449ef9e3d6f29a3eaa80d24284ce136656137ba6123d47d";
+const apkSha256 = "bfb8b6e2ad9ff2e00adea7290927cdebbaa9477c85bd9c679fd859294e4002d0";
 const certSha256 = "1e89a4f4e9ffd0092c30b5d0876abdb2aa2e351fcef971b913166512fdc1fd7a";
 
 const title = "Aether · voice dictation for Android · Hillmade";
@@ -142,6 +142,12 @@ export default function AetherPage() {
               <li>
                 Open Aether and follow the setup. You&rsquo;ll make an OpenRouter account, add some credit and
                 paste in your key; it takes about five minutes.
+              </li>
+              <li>
+                For the bubble only: if Android greys Aether out in Accessibility (&ldquo;Controlled by
+                restricted setting&rdquo;), open Aether&rsquo;s app info, tap ⋮, choose Allow restricted
+                settings and confirm. Android asks this of apps installed from a website. Setup shows you
+                where.
               </li>
             </ol>
             </div>
