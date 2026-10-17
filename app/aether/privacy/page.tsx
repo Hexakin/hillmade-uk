@@ -86,8 +86,9 @@ export default function AetherPrivacyPage() {
         </p>
         <p>
           The only other place Aether contacts is hillmade.uk, and only when you tap{" "}
-          <strong>Check for updates</strong>: it reads a small file saying which version is the latest. That
-          request carries no personal data.
+          <strong>Check for updates</strong>: it reads a small file saying which version is the latest. It sends
+          nothing about you; as with any web page, hillmade.uk&rsquo;s hosting sees your IP address, as its{" "}
+          <Link href="/privacy">privacy page</Link> explains.
         </p>
 
         <h2>What stays on your phone</h2>
