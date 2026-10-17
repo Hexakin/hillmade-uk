@@ -1,9 +1,19 @@
-// Copy drafted by Claude; approved by Jonathan, 17 Oct 2026.
+// Copy drafted by Claude; approved by Jonathan, 17 Oct 2026 (redesign).
 // Each release: replace the APK in public/aether/, update latest.json, and the version and hash below.
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Atkinson_Hyperlegible_Next } from "next/font/google";
 import { contactEmail, pageMetadata } from "@/lib/site";
+import { AetherMark } from "./AetherMark";
+import { TakeDemo } from "./TakeDemo";
 import "./aether.css";
+
+const atkinson = Atkinson_Hyperlegible_Next({
+  subsets: ["latin"],
+  adjustFontFallback: false,
+  fallback: ["system-ui", "sans-serif"],
+  variable: "--font-atkinson",
+});
 
 const version = "1.0.0";
 const apk = `/aether/aether-${version}.apk`;
@@ -21,7 +31,7 @@ export const metadata: Metadata = {
 
 export default function AetherPage() {
   return (
-    <div className="ae">
+    <div className={`ae ae-home-page ${atkinson.variable}`}>
       <a className="skip-link" href="#main">
         Skip to content
       </a>
@@ -31,66 +41,137 @@ export default function AetherPage() {
         </Link>
       </header>
 
-      <main id="main" tabIndex={-1} className="ae-main">
-        <p className="ae-kicker">Voice dictation for Android</p>
-        <h1>Aether</h1>
-        <p className="ae-lead">
-          Talk, and clean British English lands in whatever box you&rsquo;re typing in: messages, emails, notes,
-          anything.
-        </p>
-        <p>
-          Use Aether&rsquo;s own keyboard, with a big mic key and full letters for quick fixes, or a small floating
-          bubble over your usual keyboard. There&rsquo;s no account and no subscription: you bring your own{" "}
-          <a href="https://openrouter.ai">OpenRouter</a> key and pay OpenRouter directly for what you use.
-        </p>
-        <p className="ae-actions">
-          <a className="ae-btn" href={apk} download>
-            Download Aether {version}
-          </a>
-        </p>
-        <p className="ae-small">Android 10 or later · 3.2 MB</p>
+      <main id="main" tabIndex={-1}>
+        <section className="ae-hero" aria-labelledby="ae-title">
+          <div className="ae-hero-copy">
+            <h1 id="ae-title" className="ae-wordmark">
+              <AetherMark className="ae-wordmark-mark" />
+              Aether
+            </h1>
+            <p className="ae-lead">
+              Talk, and clean British English lands in whatever box you&rsquo;re typing in.
+            </p>
+            <p className="ae-sub">
+              A voice keyboard and a floating bubble for Android. No account, no subscription: you bring
+              your own <a href="https://openrouter.ai">OpenRouter</a> key and pay only for what you use.
+            </p>
+            <p className="ae-actions">
+              <a className="ae-btn" href={apk} download>
+                Download Aether {version}
+              </a>
+              <span className="ae-small">Free. Android 10 or later. 3.2 MB.</span>
+            </p>
+          </div>
+          <TakeDemo />
+        </section>
 
-        <h2>What you need</h2>
-        <ul>
-          <li>An Android phone (Android 10 or later).</li>
-          <li>An OpenRouter account with some credit, and a key from its keys page. Aether walks you through it.</li>
-        </ul>
+        <div className="ae-sections">
+          <section aria-labelledby="ae-ways">
+            <h2 id="ae-ways">Two ways to talk</h2>
+            <div className="ae-section-body">
+            <dl className="ae-ways">
+              <div>
+                <dt>Aether&rsquo;s keyboard</dt>
+                <dd>
+                  One big mic key, tap to talk or hold and let go. Tap ⌨ for the full letters when you need to
+                  fix a word.
+                </dd>
+              </div>
+              <div>
+                <dt>The bubble</dt>
+                <dd>
+                  A small circle that floats over your usual keyboard. It opens into a bar while you talk, and
+                  hides in password boxes and in the banking apps on its list.
+                </dd>
+              </div>
+            </dl>
+            </div>
+          </section>
 
-        <h2>Install it</h2>
-        <ol>
-          <li>On your phone, tap <strong>Download</strong> above.</li>
-          <li>Open the downloaded file. If Android asks, allow your browser to install apps.</li>
-          <li>Open Aether and follow the setup. It takes about five minutes.</li>
-        </ol>
+          <section aria-labelledby="ae-tidy">
+            <h2 id="ae-tidy">It tidies. It doesn&rsquo;t rewrite.</h2>
+            <div className="ae-section-body">
+            <ul className="ae-list">
+              <li>
+                <strong>Ums and self-corrections go.</strong> &ldquo;Seven, wait no, half seven&rdquo; comes out
+                as half seven.
+              </li>
+              <li>
+                <strong>Your names, spelt your way</strong>, from a dictionary you keep. British spelling by
+                default.
+              </li>
+              <li>
+                <strong>Verbatim</strong> when you want every word exactly as you said it.
+              </li>
+              <li>
+                <strong>Sound-alikes</strong> for words the speech model mishears in your accent: Aether checks
+                the sentence before it swaps.
+              </li>
+              <li>
+                <strong>Select text and say what to do with it.</strong> &ldquo;Make this politer.&rdquo;
+              </li>
+            </ul>
+            </div>
+          </section>
 
-        <h2>What it does</h2>
-        <ul>
-          <li>Real-time transcription: the text is ready a moment after you stop talking.</li>
-          <li>British spelling, your own dictionary for names, and snippets for things you type often.</li>
-          <li>Verbatim mode for your exact words, and sound-alikes for words the model mishears in your accent.</li>
-          <li>Select text and say what to do with it: &ldquo;make this politer&rdquo;.</li>
-          <li>Nothing lost: a take that goes wrong is kept so you can retry it.</li>
-          <li>Stays out of password boxes and the banking and password apps on its list.</li>
-        </ul>
+          <section aria-labelledby="ae-kept" className="ae-kept">
+            <h2 id="ae-kept">Nothing lost</h2>
+            <div className="ae-section-body">
+            <p>
+              <span className="ae-retry" aria-hidden="true">
+                ↻
+              </span>
+              No signal, a headset that dies mid-sentence, a keyboard that closes on you: Aether keeps the
+              take and offers it back with Retry. It sends the recording again as soon as there&rsquo;s a
+              signal.
+            </p>
+            </div>
+          </section>
 
-        <h2>Privacy</h2>
-        <p>
-          Your recording and a little text around your cursor go to OpenRouter on your own key. Everything else
-          stays on your phone. No analytics, no adverts. Read the{" "}
-          <Link href="/aether/privacy">privacy policy</Link>.
-        </p>
+          <section aria-labelledby="ae-start">
+            <h2 id="ae-start">Get going</h2>
+            <div className="ae-section-body">
+            <ol className="ae-steps">
+              <li>
+                <a href={apk} download>
+                  Download the app
+                </a>{" "}
+                on your phone.
+              </li>
+              <li>Open the file. If Android asks, let your browser install apps.</li>
+              <li>
+                Open Aether and follow the setup. You&rsquo;ll make an OpenRouter account, add some credit and
+                paste in your key; it takes about five minutes.
+              </li>
+            </ol>
+            </div>
+          </section>
 
-        <h2>Check the download</h2>
-        <p className="ae-small">
-          APK SHA-256: <code>{apkSha256}</code>
-          <br />
-          Signing certificate SHA-256: <code>{certSha256}</code>
-        </p>
+          <section aria-labelledby="ae-privacy">
+            <h2 id="ae-privacy">What leaves your phone</h2>
+            <div className="ae-section-body">
+            <p>
+              Your recording and a little text around your cursor go to OpenRouter, on your own key. Your
+              history, dictionary and settings stay on your phone, and out of backups. No analytics, no
+              adverts. <Link href="/aether/privacy">Read the privacy policy</Link>.
+            </p>
+            </div>
+          </section>
 
-        <h2>Questions</h2>
-        <p>
-          <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
-        </p>
+          <section aria-labelledby="ae-check" className="ae-check">
+            <h2 id="ae-check">Check the download</h2>
+            <div className="ae-section-body">
+            <p className="ae-small">
+              APK SHA-256: <code>{apkSha256}</code>
+              <br />
+              Signing certificate SHA-256: <code>{certSha256}</code>
+            </p>
+            <p className="ae-small">
+              Questions: <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+            </p>
+            </div>
+          </section>
+        </div>
       </main>
     </div>
   );

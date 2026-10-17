@@ -2,8 +2,16 @@
 // 03-LifeWithAI/aether/docs/privacy-policy.md (the Aether app links to this page). Keep them in step.
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Atkinson_Hyperlegible_Next } from "next/font/google";
 import { contactEmail, pageMetadata } from "@/lib/site";
 import "../aether.css";
+
+const atkinson = Atkinson_Hyperlegible_Next({
+  subsets: ["latin"],
+  adjustFontFallback: false,
+  fallback: ["system-ui", "sans-serif"],
+  variable: "--font-atkinson",
+});
 
 const title = "Aether privacy policy · Hillmade";
 const description =
@@ -16,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function AetherPrivacyPage() {
   return (
-    <div className="ae">
+    <div className={`ae ${atkinson.variable}`}>
       <a className="skip-link" href="#main">
         Skip to content
       </a>

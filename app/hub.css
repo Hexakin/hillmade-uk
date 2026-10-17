@@ -163,6 +163,41 @@
   color: #c9c4ba;
   font-size: 0.98rem;
 }
+/* Aether's strip: its own night teal and Atkinson, like its page. */
+.hub .hub-new-aether {
+  border-color: #1f3d4a;
+  border-left-color: #7ee0d0;
+  background: linear-gradient(90deg, #12303a, #0b1f2a 60%);
+  color: #e6f2f0;
+  font-family: var(--font-atkinson), system-ui, sans-serif;
+}
+.hub .hub-new-aether:hover,
+.hub .hub-new-aether:focus-visible {
+  border-color: #7ee0d0;
+}
+.hub-new-aether .hub-new-icon {
+  color: #7ee0d0;
+}
+.hub-new-aether .hub-new-kicker {
+  color: #7ee0d0;
+}
+.hub-new-aether .hub-new-title {
+  font-family: var(--font-atkinson), system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  text-transform: none;
+}
+.hub-new-aether .hub-new-line {
+  color: #b3c5c2;
+}
+.hub-new-aether .hub-new-go {
+  border-radius: 999px;
+  background: #7ee0d0;
+  color: #04201c;
+}
+.hub-new + .hub-new {
+  margin-top: 0;
+}
 .hub-new-go {
   flex: none;
   padding: 10px 16px;
