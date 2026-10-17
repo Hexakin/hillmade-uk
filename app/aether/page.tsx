@@ -1,4 +1,4 @@
-// Copy drafted by Claude (AI DRAFT, 17 Oct 2026 redesign): awaiting Jonathan's approval.
+// Copy drafted by Claude; approved by Jonathan, 17 Oct 2026 (redesign).
 // Each release: replace the APK in public/aether/, update latest.json, and the version and hash below.
 import type { Metadata } from "next";
 import Link from "next/link";

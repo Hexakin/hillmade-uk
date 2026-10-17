@@ -94,7 +94,7 @@ export default function Hub() {
           </span>
         </Link>
 
-        {/* AI DRAFT (Claude), 17 Oct 2026: launch strip for Aether, in its own teal; Jonathan to approve the wording. */}
+        {/* Launch strip for Aether, in its own teal: drafted by Claude, approved by Jonathan 17 Oct 2026. */}
         <Link href="/aether" className="hub-new hub-new-aether" aria-label="New: Aether, voice dictation for Android">
           <AetherMark className="hub-new-icon" />
           <span className="hub-new-copy">
