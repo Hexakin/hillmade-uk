@@ -3,7 +3,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { contactEmail, pageMetadata } from "@/lib/site";
-import "./privacy.css";
+import "../aether.css";
 
 const title = "Aether privacy policy · Hillmade";
 const description =
@@ -85,8 +85,9 @@ export default function AetherPrivacyPage() {
           settings.
         </p>
         <p>
-          The only other place Aether contacts is GitHub, and only when you tap <strong>Check for updates</strong>.
-          That request carries no personal data.
+          The only other place Aether contacts is hillmade.uk, and only when you tap{" "}
+          <strong>Check for updates</strong>: it reads a small file saying which version is the latest. That
+          request carries no personal data.
         </p>
 
         <h2>What stays on your phone</h2>
@@ -151,7 +152,7 @@ export default function AetherPrivacyPage() {
             <strong>Unrestricted battery (optional):</strong> so Android doesn&rsquo;t put the bubble to sleep.
           </li>
           <li>
-            <strong>Internet:</strong> to reach OpenRouter, and GitHub when you check for updates.
+            <strong>Internet:</strong> to reach OpenRouter, and hillmade.uk when you check for updates.
           </li>
         </ul>
 

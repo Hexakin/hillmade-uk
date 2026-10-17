@@ -1,4 +1,4 @@
-/* Aether privacy page: Aether's own dark teal. Mobile first. Every class is prefixed ae-
+/* Aether pages: Aether's own dark teal. Mobile first. Every class is prefixed ae-
    so nothing leaks into the site. */
 .ae {
   --ae-ground: #0b1f2a;
@@ -67,4 +67,35 @@
 }
 .ae li::marker {
   color: var(--ae-teal);
+}
+.ae ol {
+  list-style: decimal;
+  padding-left: 1.4rem;
+}
+.ae-lead {
+  font-size: 1.2rem;
+}
+.ae-actions {
+  margin: 1.5rem 0 0.25rem;
+}
+.ae-btn {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  border-radius: 999px;
+  background: var(--ae-teal);
+  color: #04201c !important;
+  font-weight: 700;
+  text-decoration: none;
+}
+.ae-btn:focus-visible {
+  outline: 3px solid var(--ae-ink);
+  outline-offset: 3px;
+}
+.ae-small {
+  color: var(--ae-muted);
+  font-size: 0.95rem;
+}
+.ae code {
+  overflow-wrap: anywhere;
+  font-size: 0.85rem;
 }
